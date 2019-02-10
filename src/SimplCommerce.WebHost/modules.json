@@ -142,5 +142,9 @@
     {
         "id": "SimplCommerce.Module.SignalR",
         "version": "1.0.0"
+    },
+    {
+      "id": "SimplCommerce.Module.PaymentCashfree",
+      "version": "1.0.0"
     }
 ]

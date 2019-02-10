@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor" ToolsVersion="15.0">
+  <PropertyGroup>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <ProjectGuid>{105EBD88-C696-4F6E-A4D2-A99AA8DA8A73}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SimplCommerce.Infrastructure\SimplCommerce.Infrastructure.csproj" />
+    <ProjectReference Include="..\SimplCommerce.Module.Core\SimplCommerce.Module.Core.csproj" />
+    <ProjectReference Include="..\SimplCommerce.Module.Orders\SimplCommerce.Module.Orders.csproj" />
+    <ProjectReference Include="..\SimplCommerce.Module.Payments\SimplCommerce.Module.Payments.csproj" />
+    <PackageReference Include="Stripe.net" Version="22.8.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\PaymentCashfree\Components\CashfreeLandingViewComponent.cs" />
+    <Compile Include="Areas\PaymentCashfree\Controllers\CashfreeApiController.cs" />
+    <Compile Include="Areas\PaymentCashfree\Controllers\CashfreeController.cs" />
+    <Compile Include="Areas\PaymentCashfree\ViewModels\CashfreeCheckoutForm.cs" />
+    <Compile Include="Areas\PaymentCashfree\ViewModels\CashfreeConfigForm.cs" />
+    <Compile Include="Data\PaymentCashfreeCustomModelBuilder.cs" />
+    <Compile Include="Models\PaymentProviderHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Areas\PaymentCashfree\Views\Shared\Components\CashfreeLanding\Default.cshtml" />
+    <None Include="Areas\PaymentCashfree\Views\_ViewImports.cshtml" />
+    <None Include="Areas\PaymentCashfree\Views\_ViewStart.cshtml" />
+    <None Include="module.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\admin\cashfree\cahsfree-config-form.js" />
+    <Content Include="wwwroot\admin\cashfree\cashfree-config-form.html" />
+    <Content Include="wwwroot\admin\cashfree\cashfree-service.js" />
+    <Content Include="wwwroot\admin\paymentCashfree.module.js" />
+  </ItemGroup>
+</Project>
