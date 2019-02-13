@@ -2,10 +2,24 @@
 {
     public class CashfreeCheckoutForm
     {
-        public string PublicKey { get; set; }
+        public string AppId { get; set; }
 
-        public int Amount { get; set; }
+        public string PaymentToken { get; set; }
 
-        public string ISOCurrencyCode { get; set; }
+        public string Mode { get; set; }
+
+        public decimal OrderAmount { get; set; }
+
+        public long OrderId { get; set; }
+
+        public string CustomerName { get; set; }
+
+        public string CustomerPhone { get; set; }
+
+        public string CustomerEmail { get; set; }
+
+        public string ReturnURL { get; set; }
+
+        public string NotifyURL { get; set; }
     }
 }
