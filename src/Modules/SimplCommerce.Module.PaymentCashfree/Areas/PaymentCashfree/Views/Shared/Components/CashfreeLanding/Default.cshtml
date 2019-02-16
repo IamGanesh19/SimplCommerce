@@ -1,15 +1,12 @@
 ﻿@model SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.ViewModels.CashfreeCheckoutForm
-@*<label>Cashfree</label>
-    <form asp-area="PaymentCashfree" asp-controller="Cashfree" asp-action="Charge" method="POST">
-        <script src="//checkout.Cashfree.com/v2/checkout.js"
-                class="Cashfree-button"
-                data-key="@Model.PublicKey"
-                data-locale="auto"
-                data-currency="@Model.ISOCurrencyCode"
-                data-description="Payment with Cashfree"
-                data-amount="@Model.Amount">
-        </script>
-    </form>*@
+<label>Cashfree</label>
+
+<div class="form-group">
+    <div class="col-md-12">
+        <button type="button" id="cashfree-payment-button" class="btn btn-order">Pay with Cashfree</button>
+    </div>
+</div>
+
 
 <!-- Place the below div on your html -->
 <div id="payment-div"></div>
@@ -19,7 +16,7 @@
 <script type="text/javascript">
     (function () {
         var data = {};
-        data.orderId = "@Model.OrderId";
+        data.orderId = @Model.OrderId;
         data.orderAmount = @Model.OrderAmount;
         data.customerName = "@Model.CustomerName";
         data.customerPhone = "@Model.CustomerPhone";
@@ -40,17 +37,23 @@
         }
         var config = {};
         config.layout = { view: "popup", width: "650" };
-        config.mode = "@Model.Mode"; //use PROD when you go live
+        config.mode = "@Model.Mode";
         var response = CashFree.init(config);
+        console.log(response);
         if (response.status == "OK") {
             cfInitialized = true;
+            console.log("cfInitialized");
         } else {
             //handle error
             console.log(response.message);
-        }
-        // Make sure you put id of your payment button that triggers the payment flow in the below statement.
-        $("paymentButton").click(function () {
+        }       
+
+        var button = document.querySelector('#cashfree-payment-button');
+        console.log(button);
+        button.addEventListener('click', function () {
+            console.log("cashfreePaymentButton Onclik");
             if (cfInitialized) {
+                console.log("cashfreePaymentButton Onclik - cfInitialized");
                 CashFree.makePayment(data, callback);
             }
         });

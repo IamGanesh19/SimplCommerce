@@ -36,22 +36,22 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             var cashfreeSetting = JsonConvert.DeserializeObject<CashfreeConfigForm>(cashfreeProvider.AdditionalSettings);
             var currentUser = await _workContext.GetCurrentUser();
             var cart = await _cartService.GetActiveCartDetails(currentUser.Id);
-            var zeroDecimalAmount = cart.OrderTotal;
-            if(!CurrencyHelper.IsZeroDecimalCurrencies())
-            {
-                zeroDecimalAmount = zeroDecimalAmount * 100;
-            }
+            //var zeroDecimalAmount = cart.OrderTotal;
+            //if(!CurrencyHelper.IsZeroDecimalCurrencies())
+            //{
+            //    zeroDecimalAmount = zeroDecimalAmount * 100;
+            //}
 
             var regionInfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
 
-            string message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + cart.OrderTotalString + "&customerName=" + currentUser.FullName + "&customerPhone=" + currentUser.PhoneNumber + "&customerEmail=" + currentUser.Email + "&returnUrl=" + cashfreeSetting.ReturnURL + "&notifyUrl=" + cashfreeSetting.NotifyURL + "&paymentModes=\"\"";
+            string message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + cart.OrderTotal + "&customerName=" + currentUser.FullName + "&customerPhone=" + currentUser.PhoneNumber + "&customerEmail=" + currentUser.Email + "&returnUrl=" + cashfreeSetting.ReturnURL + "&notifyUrl=" + cashfreeSetting.NotifyURL + "&paymentModes=\"\"";
 
             var model = new CashfreeCheckoutForm
             {
                 AppId = cashfreeSetting.AppId,
                 PaymentToken = GetPaymentToken(message, cashfreeSetting.SecretKey),
                 OrderId = cart.Id,
-                OrderAmount = zeroDecimalAmount,
+                OrderAmount = cart.OrderTotal,
                 CustomerName = currentUser.FullName,
                 CustomerEmail = currentUser.Email,
                 CustomerPhone = currentUser.PhoneNumber,
