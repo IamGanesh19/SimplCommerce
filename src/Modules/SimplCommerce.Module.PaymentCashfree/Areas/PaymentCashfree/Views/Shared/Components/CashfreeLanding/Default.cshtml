@@ -17,7 +17,7 @@
     (function () {
         var data = {};
         data.orderId = @Model.OrderId;
-        data.orderAmount = @Model.OrderAmount;
+        data.orderAmount = 93;
         data.customerName = "@Model.CustomerName";
         data.customerPhone = "@Model.CustomerPhone";
         data.customerEmail = "@Model.CustomerEmail";
@@ -27,6 +27,7 @@
         data.paymentToken = "@Model.PaymentToken";
         var callback = function (event) {
             var eventName = event.name;
+            console.log(event);
             switch (eventName) {
                 case "PAYMENT_REQUEST":
                     console.log(event.message);
@@ -42,7 +43,6 @@
         console.log(response);
         if (response.status == "OK") {
             cfInitialized = true;
-            console.log("cfInitialized");
         } else {
             //handle error
             console.log(response.message);

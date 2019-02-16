@@ -36,6 +36,8 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             var cashfreeSetting = JsonConvert.DeserializeObject<CashfreeConfigForm>(cashfreeProvider.AdditionalSettings);
             var currentUser = await _workContext.GetCurrentUser();
             var cart = await _cartService.GetActiveCartDetails(currentUser.Id);
+            decimal total = 93;
+            currentUser.PhoneNumber = "8903440712";
             //var zeroDecimalAmount = cart.OrderTotal;
             //if(!CurrencyHelper.IsZeroDecimalCurrencies())
             //{
@@ -43,13 +45,14 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             //}
 
             var regionInfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
-
-            string message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + cart.OrderTotal + "&customerName=" + currentUser.FullName + "&customerPhone=" + currentUser.PhoneNumber + "&customerEmail=" + currentUser.Email + "&returnUrl=" + cashfreeSetting.ReturnURL + "&notifyUrl=" + cashfreeSetting.NotifyURL + "&paymentModes=\"\"";
-
+            var paymentModes = "";
+            //var message = "appId=\"" + cashfreeSetting.AppId + "\"&orderId=" + cart.Id + "&orderAmount=" + cart.OrderTotal + "&returnUrl=\"" + cashfreeSetting.ReturnURL + "\"&paymentModes=\"" + paymentModes + "\"";
+            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + total + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + paymentModes;
+            var paymentToken = GetPaymentToken(message, cashfreeSetting.SecretKey);
             var model = new CashfreeCheckoutForm
             {
                 AppId = cashfreeSetting.AppId,
-                PaymentToken = GetPaymentToken(message, cashfreeSetting.SecretKey),
+                PaymentToken = paymentToken,
                 OrderId = cart.Id,
                 OrderAmount = cart.OrderTotal,
                 CustomerName = currentUser.FullName,
