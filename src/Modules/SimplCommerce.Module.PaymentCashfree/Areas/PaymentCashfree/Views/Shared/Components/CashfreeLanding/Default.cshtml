@@ -17,14 +17,14 @@
     (function () {
         var data = {};
         data.orderId = @Model.OrderId;
-        data.orderAmount = 93;
+        data.orderAmount = @Model.OrderAmount;
         data.customerName = "@Model.CustomerName";
         data.customerPhone = "@Model.CustomerPhone";
         data.customerEmail = "@Model.CustomerEmail";
         data.returnUrl = "@Model.ReturnURL";
         data.notifyUrl = "@Model.NotifyURL";
         data.appId = "@Model.AppId";
-        data.paymentToken = "@Model.PaymentToken";
+        data.paymentToken = "@Html.Raw(Model.PaymentToken)";
         var callback = function (event) {
             var eventName = event.name;
             console.log(event);
@@ -46,7 +46,7 @@
         } else {
             //handle error
             console.log(response.message);
-        }       
+        }
 
         var button = document.querySelector('#cashfree-payment-button');
         console.log(button);

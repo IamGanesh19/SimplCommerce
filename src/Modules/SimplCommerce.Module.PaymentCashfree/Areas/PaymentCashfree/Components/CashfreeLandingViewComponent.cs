@@ -36,18 +36,17 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             var cashfreeSetting = JsonConvert.DeserializeObject<CashfreeConfigForm>(cashfreeProvider.AdditionalSettings);
             var currentUser = await _workContext.GetCurrentUser();
             var cart = await _cartService.GetActiveCartDetails(currentUser.Id);
-            decimal total = 93;
+            
             currentUser.PhoneNumber = "8903440712";
-            //var zeroDecimalAmount = cart.OrderTotal;
-            //if(!CurrencyHelper.IsZeroDecimalCurrencies())
+            //var zerodecimalamount = cart.OrderTotal;
+            //if (!CurrencyHelper.IsZeroDecimalCurrencies())
             //{
-            //    zeroDecimalAmount = zeroDecimalAmount * 100;
+            //    zerodecimalamount = zerodecimalamount * 100;
             //}
 
-            var regionInfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
             var paymentModes = "";
             //var message = "appId=\"" + cashfreeSetting.AppId + "\"&orderId=" + cart.Id + "&orderAmount=" + cart.OrderTotal + "&returnUrl=\"" + cashfreeSetting.ReturnURL + "\"&paymentModes=\"" + paymentModes + "\"";
-            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + total + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + paymentModes;
+            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + cart.OrderTotal + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + paymentModes;
             var paymentToken = GetPaymentToken(message, cashfreeSetting.SecretKey);
             var model = new CashfreeCheckoutForm
             {
