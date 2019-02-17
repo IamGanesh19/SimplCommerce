@@ -40,65 +40,60 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
             _paymentRepository = paymentRepository;
         }
 
-        public async Task<IActionResult> Charge(string CashfreeEmail, string CashfreeToken)
+        [HttpPost]
+        public async Task<IActionResult> Charge(string nonce)
         {
-            //var cashfreeProvider = await _paymentProviderRepository.Query().FirstOrDefaultAsync(x => x.Id == PaymentProviderHelper.CashfreeProviderId);
-            //var cashfreeSetting = JsonConvert.DeserializeObject<CashfreeConfigForm>(cashfreeProvider.AdditionalSettings);
-            ////var cashfreeChargeService = new ChargeService(cashfreeSetting.PrivateKey);
-            //var currentUser = await _workContext.GetCurrentUser();
-            //var cart = await _cartService.GetActiveCart(currentUser.Id).FirstOrDefaultAsync();
+            var curentUser = await _workContext.GetCurrentUser();
+            var cart = await _cartService.GetActiveCartDetails(curentUser.Id);
 
-            //var orderCreationResult = await _orderService.CreateOrder(cart.Id, "Cashfree", 0, OrderStatus.PendingPayment);
-            //if (!orderCreationResult.Success)
-            //{
-            //    TempData["Error"] = orderCreationResult.Error;
-            //    return Redirect("~/checkout/payment");
-            //}
+            var orderCreateResult = await _orderService.CreateOrder(cart.Id, PaymentProviderHelper.CashfreeProviderId, 0, OrderStatus.PendingPayment);
 
-            //var order = orderCreationResult.Value;
-            //var zeroDecimalOrderAmount = order.OrderTotal;
-            //if (!CurrencyHelper.IsZeroDecimalCurrencies())
-            //{
-            //    zeroDecimalOrderAmount = zeroDecimalOrderAmount * 100;
-            //}
+            if (!orderCreateResult.Success)
+            {
+                return BadRequest(orderCreateResult.Error);
+            }
 
-            //var regionInfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
-            //var payment = new Payment()
-            //{
-            //    OrderId = order.Id,
-            //    Amount = order.OrderTotal,
-            //    PaymentMethod = "Cashfree",
-            //    CreatedOn = DateTimeOffset.UtcNow
-            //};
-            //try
-            //{
-            //    var charge = cashfreeChargeService.Create(new ChargeCreateOptions
-            //    {
-            //        Amount = (int)zeroDecimalOrderAmount,
-            //        Description = "Sample Charge",
-            //        Currency = regionInfo.ISOCurrencySymbol,
-            //        SourceId = CashfreeToken
-            //    });
+            var order = orderCreateResult.Value;
+            var zeroDecimalOrderAmount = order.OrderTotal;
+            if (!CurrencyHelper.IsZeroDecimalCurrencies())
+            {
+                zeroDecimalOrderAmount = zeroDecimalOrderAmount * 100;
+            }
 
-            //    payment.GatewayTransactionId = charge.Id;
+            var regionInfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
+            var payment = new Payment()
+            {
+                OrderId = order.Id,
+                Amount = order.OrderTotal,
+                PaymentMethod = PaymentProviderHelper.CashfreeProviderId,
+                CreatedOn = DateTimeOffset.UtcNow
+            };
+
+            return Ok("Sucess");
+
+            //var result = gateway.Transaction.Sale(request);
+            //if (result.IsSuccess())
+            //{
+            //    var transaction = result.Target;
+
+            //    payment.GatewayTransactionId = transaction.Id;
             //    payment.Status = PaymentStatus.Succeeded;
             //    order.OrderStatus = OrderStatus.PaymentReceived;
             //    _paymentRepository.Add(payment);
             //    await _paymentRepository.SaveChangesAsync();
-            //    return Redirect("~/checkout/congratulation");
-            //}
-            //catch (CashfreeException ex)
-            //{
-            //    payment.Status = PaymentStatus.Failed;
-            //    payment.FailureMessage = ex.CashfreeError.Message;
-            //    order.OrderStatus = OrderStatus.PaymentFailed;
 
-            //    _paymentRepository.Add(payment);
-            //    await _paymentRepository.SaveChangesAsync();
-            //    TempData["Error"] = ex.CashfreeError.Message;
-            //    return Redirect("~/checkout/payment");
+            //    return Ok(transaction.Id);
             //}
-            return Redirect("~/checkout/congratulation");
+            //else
+            //{
+            //    string errorMessages = "";
+            //    foreach (var error in result.Errors.DeepAll())
+            //    {
+            //        errorMessages += "Error: " + (int)error.Code + " - " + error.Message + "\n";
+            //    }
+
+            //    return BadRequest(errorMessages);
+            //}
         }
     }
 }
