@@ -24,7 +24,7 @@
                             vm.validationErrors.push(error[key][0]);
                         }
                     } else {
-                        vm.validationErrors.push('Could not save settings.');
+                        vm.validationErrors.push('Could not save Cashfree settings.');
                     }
                 });
         };

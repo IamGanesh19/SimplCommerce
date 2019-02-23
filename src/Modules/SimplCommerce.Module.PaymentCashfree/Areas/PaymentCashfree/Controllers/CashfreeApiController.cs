@@ -12,7 +12,7 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
 {
     [Area("PaymentCashfree")]
     [Authorize(Roles = "admin")]
-    [Route("api/Cashfree")]
+    [Route("api/cashfree")]
     public class CashfreeApiController : Controller
     {
         private readonly IRepositoryWithTypedId<PaymentProvider, string> _paymentProviderRepository;
