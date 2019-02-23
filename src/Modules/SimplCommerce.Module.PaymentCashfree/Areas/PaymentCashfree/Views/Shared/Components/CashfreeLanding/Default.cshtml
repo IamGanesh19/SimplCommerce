@@ -30,17 +30,16 @@
             console.log(event);
             switch (eventName) {
                 case "PAYMENT_REQUEST":
-                    console.log(event.message);
+                    console.log(event);
                     break;
                 default:
-                    console.log(event.message);
+                    console.log(event);
             };
         }
         var config = {};
         config.layout = { view: "popup", width: "650" };
         config.mode = "@Model.Mode";
         var response = CashFree.init(config);
-        console.log(response);
         if (response.status == "OK") {
             cfInitialized = true;
         } else {
@@ -49,11 +48,8 @@
         }
 
         var button = document.querySelector('#cashfree-payment-button');
-        console.log(button);
         button.addEventListener('click', function () {
-            console.log("cashfreePaymentButton Onclik");
             if (cfInitialized) {
-                console.log("cashfreePaymentButton Onclik - cfInitialized");
                 CashFree.makePayment(data, callback);
             }
         });
