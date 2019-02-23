@@ -34,27 +34,22 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             var cashfreeProvider = await _paymentProviderRepository.Query().FirstOrDefaultAsync(x => x.Id == PaymentProviderHelper.CashfreeProviderId);
             var cashfreeSetting = JsonConvert.DeserializeObject<CashfreeConfigForm>(cashfreeProvider.AdditionalSettings);
             var currentUser = await _workContext.GetCurrentUser();
-            var cart = await _cartService.GetActiveCartDetails(currentUser.Id);
-            
-            currentUser.PhoneNumber = "8903440712";
-            var paymentModes = "";
+            var cart = await _cartService.GetActiveCartDetails(currentUser.Id);            
+            currentUser.PhoneNumber = "8903440712"; // TODO Get customer mobile number
 
-            int zerodecimalamount = 0;
-            if (!CurrencyHelper.IsZeroDecimalCurrencies())
-            {
-                zerodecimalamount = (int)cart.OrderTotal;
-            }
+            // Converted to integer to remove the decimal value for INR
+            int amount = 0;
+            amount = (int)cart.OrderTotal;
 
-            var orderId = DateTime.Today.ToString("dM") + "-" + cart.Id;
-
-            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + orderId + "&orderAmount=" + zerodecimalamount + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + paymentModes;
+            //var orderId = DateTime.Today.ToString("dM") + "-" + cart.Id;
+            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + amount + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + cashfreeSetting.PaymentModes;
             var paymentToken = PaymentProviderHelper.GetToken(message, cashfreeSetting.SecretKey);
             var model = new CashfreeCheckoutForm
             {
                 AppId = cashfreeSetting.AppId,
                 PaymentToken = paymentToken,
-                OrderId = orderId,
-                OrderAmount = zerodecimalamount,
+                OrderId = cart.Id,
+                OrderAmount = amount,
                 CustomerName = currentUser.FullName,
                 CustomerEmail = currentUser.Email,
                 CustomerPhone = currentUser.PhoneNumber,

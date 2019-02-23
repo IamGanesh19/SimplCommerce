@@ -18,9 +18,11 @@ namespace SimplCommerce.Module.ShoppingCart.Services
 
         IQueryable<Cart> GetActiveCart(long customerId, long createdById);
 
+        IQueryable<Cart> GetActiveCartById(long cartId, long customerId);
+
         Task<CartVm> GetActiveCartDetails(long customerId);
 
-        Task<CartVm> GetActiveCartDetails(long customerId, long createdById);
+        Task<CartVm> GetActiveCartDetails(long customerId, long createdById);        
 
         Task<CouponValidationResult> ApplyCoupon(long cartId, string couponCode);
 

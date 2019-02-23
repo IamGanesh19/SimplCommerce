@@ -38,6 +38,13 @@ namespace SimplCommerce.Module.ShoppingCart.Services
             return GetActiveCart(customerId, customerId);
         }
 
+        public IQueryable<Cart> GetActiveCartById(long cartId, long customerId)
+        {
+            return _cartRepository.Query()
+               .Include(x => x.Items)
+               .Where(x => x.CustomerId == customerId && x.Id == cartId && x.IsActive);
+        }
+
         public IQueryable<Cart> GetActiveCart(long customerId, long createdById)
         {
             return _cartRepository.Query()
@@ -88,7 +95,7 @@ namespace SimplCommerce.Module.ShoppingCart.Services
         public async Task<CartVm> GetActiveCartDetails(long customerId)
         {
             return await GetActiveCartDetails(customerId, customerId);
-        }
+        }        
 
         // TODO separate getting product thumbnail, varation options from here
         public async Task<CartVm> GetActiveCartDetails(long customerId, long createdById)
@@ -204,6 +211,6 @@ namespace SimplCommerce.Module.ShoppingCart.Services
 
                await _cartRepository.SaveChangesAsync();
             }
-        }
+        }        
     }
 }

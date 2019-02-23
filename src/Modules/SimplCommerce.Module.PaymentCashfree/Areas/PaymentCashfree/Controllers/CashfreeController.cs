@@ -59,7 +59,7 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
             if (responseToken.Equals(cashfreeResponse.Signature))
             {
                 var curentUser = await _workContext.GetCurrentUser();
-                var cart = await _cartService.GetActiveCartDetails(curentUser.Id);
+                var cart = await _cartService.GetActiveCartById(Convert.ToInt64(cashfreeResponse.OrderId), curentUser.Id).FirstOrDefaultAsync();
 
                 var orderCreateResult = await _orderService.CreateOrder(cart.Id, PaymentProviderHelper.CashfreeProviderId, 0, OrderStatus.PendingPayment);
 
@@ -75,7 +75,6 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                     zeroDecimalOrderAmount = (int)order.OrderTotal;
                 }
 
-                var regionInfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
                 var payment = new Payment()
                 {
                     OrderId = order.Id,
@@ -96,8 +95,13 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                 }
                 else
                 {
-                    string errorMessages = "Error: " + cashfreeResponse.TxStatus + " - " + cashfreeResponse.TxMsg + "\n";                   
+                    payment.GatewayTransactionId = cashfreeResponse.ReferenceId;
+                    payment.Status = PaymentStatus.Succeeded;
+                    order.OrderStatus = OrderStatus.PaymentReceived;
+                    _paymentRepository.Add(payment);
+                    await _paymentRepository.SaveChangesAsync();                    
 
+                    string errorMessages = "Error: " + cashfreeResponse.TxStatus + " - " + cashfreeResponse.TxMsg;
                     return BadRequest("Error");
                 }
             }
