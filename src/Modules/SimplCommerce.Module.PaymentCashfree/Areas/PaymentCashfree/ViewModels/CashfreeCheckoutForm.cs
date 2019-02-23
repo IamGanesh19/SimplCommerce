@@ -8,9 +8,9 @@
 
         public string Mode { get; set; }
 
-        public decimal OrderAmount { get; set; }
+        public int OrderAmount { get; set; }
 
-        public long OrderId { get; set; }
+        public string OrderId { get; set; }
 
         public string CustomerName { get; set; }
 

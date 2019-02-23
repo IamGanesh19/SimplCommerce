@@ -11,7 +11,6 @@ using SimplCommerce.Module.Payments.Models;
 using SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.ViewModels;
 using SimplCommerce.Module.PaymentCashfree.Models;
 using SimplCommerce.Module.ShoppingCart.Services;
-using System.Security.Cryptography;
 using System;
 
 namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
@@ -38,22 +37,24 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             var cart = await _cartService.GetActiveCartDetails(currentUser.Id);
             
             currentUser.PhoneNumber = "8903440712";
-            //var zerodecimalamount = cart.OrderTotal;
-            //if (!CurrencyHelper.IsZeroDecimalCurrencies())
-            //{
-            //    zerodecimalamount = zerodecimalamount * 100;
-            //}
-
             var paymentModes = "";
-            //var message = "appId=\"" + cashfreeSetting.AppId + "\"&orderId=" + cart.Id + "&orderAmount=" + cart.OrderTotal + "&returnUrl=\"" + cashfreeSetting.ReturnURL + "\"&paymentModes=\"" + paymentModes + "\"";
-            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + cart.OrderTotal + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + paymentModes;
-            var paymentToken = GetPaymentToken(message, cashfreeSetting.SecretKey);
+
+            int zerodecimalamount = 0;
+            if (!CurrencyHelper.IsZeroDecimalCurrencies())
+            {
+                zerodecimalamount = (int)cart.OrderTotal;
+            }
+
+            var orderId = DateTime.Today.ToString("dM") + "-" + cart.Id;
+
+            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + orderId + "&orderAmount=" + zerodecimalamount + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + paymentModes;
+            var paymentToken = PaymentProviderHelper.GetToken(message, cashfreeSetting.SecretKey);
             var model = new CashfreeCheckoutForm
             {
                 AppId = cashfreeSetting.AppId,
                 PaymentToken = paymentToken,
-                OrderId = cart.Id,
-                OrderAmount = cart.OrderTotal,
+                OrderId = orderId,
+                OrderAmount = zerodecimalamount,
                 CustomerName = currentUser.FullName,
                 CustomerEmail = currentUser.Email,
                 CustomerPhone = currentUser.PhoneNumber,
@@ -63,18 +64,6 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             };            
 
             return View(this.GetViewPath(), model);
-        }
-
-        private string GetPaymentToken(string message, string secretKey)
-        {
-            var encoding = new System.Text.ASCIIEncoding();
-            byte[] keyByte = encoding.GetBytes(secretKey);
-            byte[] messageBytes = encoding.GetBytes(message);
-            using (var hmacsha256 = new HMACSHA256(keyByte))
-            {
-                byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
-                return Convert.ToBase64String(hashmessage);
-            }
-        }
+        }        
     }
 }
