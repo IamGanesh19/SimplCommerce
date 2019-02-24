@@ -26,6 +26,11 @@
                 </div>
             }
         </div>
+        <div class="text-right">
+            <form asp-area="Order" asp-controller="Checkout" asp-action="Cancel" method="post" id="logoutForm" class="">
+                <button type="submit" class="btn btn-secondary active">@Localizer["Cancel Order"]</button>
+            </form>
+        </div>
     </div>
     <div class="col-md-6">
         @await Component.InvokeAsync("OrderSummary")
