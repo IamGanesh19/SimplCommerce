@@ -41,14 +41,14 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             int amount = 0;
             amount = (int)cart.OrderTotal;
 
-            //var orderId = DateTime.Today.ToString("dM") + "-" + cart.Id;
-            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + cart.Id + "&orderAmount=" + amount + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + cashfreeSetting.PaymentModes;
+            var orderId = DateTime.Today.ToString("ddMMyyyy") + "-" + cart.Id;
+            var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + orderId + "&orderAmount=" + amount + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + cashfreeSetting.PaymentModes;
             var paymentToken = PaymentProviderHelper.GetToken(message, cashfreeSetting.SecretKey);
             var model = new CashfreeCheckoutForm
             {
                 AppId = cashfreeSetting.AppId,
                 PaymentToken = paymentToken,
-                OrderId = cart.Id,
+                OrderId = orderId,
                 OrderAmount = amount,
                 CustomerName = currentUser.FullName,
                 CustomerEmail = currentUser.Email,

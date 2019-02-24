@@ -1,10 +1,10 @@
 ﻿@model SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.ViewModels.CashfreeCheckoutForm
-<label>Pay Online with Card / Net Banking / UPI / Wallet</label>
+<label>@Localizer["Pay Online with Card / Net Banking / UPI / Wallet"]</label>
 
 <div class="form-group">
     <div class="col-md-12">
-        <button type="button" id="cashfree-payment-button" class="btn btn-order">Pay Online</button>
-    </div>
+        <button type="button" id="cashfree-payment-button" class="btn btn-order">@Localizer["Pay Online"]</button>
+</div>
 </div>
 
 
@@ -16,7 +16,7 @@
 <script type="text/javascript">
     (function () {
         var data = {};
-        data.orderId = @Model.OrderId;
+        data.orderId = "@Model.OrderId";
         data.orderAmount = "@Model.OrderAmount";
         data.customerName = "@Model.CustomerName";
         data.customerPhone = "@Model.CustomerPhone";

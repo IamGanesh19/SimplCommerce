@@ -226,8 +226,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*==================================================================
 [ Top bar ]*/
 .top-bar {
-  height: 40px;
-  background-color: #222;
+    height: 40px;
+    background-color: #11599f;
 }
 
 /*---------------------------------------------*/
@@ -235,7 +235,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   font-family: Lato-Regular;
   font-size: 12px;
   line-height: 1.8;
-  color: #b2b2b2;
+  color: #ffffff;
 }
 
 
@@ -246,7 +246,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   line-height: 1.8;
 
   height: 100%;
-  color: #b2b2b2;
+  color: #ffffff;
   border-right: 1px solid rgba(255,255,255,0.3);
 }
 
@@ -255,7 +255,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .right-top-bar a:hover {
-  color: #6c7ae0;
+  color: #18ba9b;
 }
 
 
