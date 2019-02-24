@@ -1,5 +1,5 @@
 ﻿.logoff {
-    font-family: Poppins-Regular;
+    font-family: Lato-Regular;
     font-size: 12px;
     line-height: 1.8;
     height: 100%;
@@ -256,7 +256,7 @@
 
     .list-inline li {
         height: 22px;
-        line-height: 22px;
+        /*line-height: 22px;*/
     }
 
     .list-inline a {

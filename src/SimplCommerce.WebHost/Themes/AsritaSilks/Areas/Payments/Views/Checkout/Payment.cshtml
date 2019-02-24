@@ -1,0 +1,33 @@
+﻿@addTagHelper *, SimplCommerce.Infrastructure
+@model SimplCommerce.Module.Payments.Areas.Payments.ViewModels.CheckoutPaymentForm
+
+@{
+    ViewBag.Title = "Payment Information";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger" role="alert">@TempData["Error"]</div>
+        }
+        <div id="paymentError" class="alert alert-danger d-none" role="alert"></div>
+        <h3>@Localizer["Choose a payment method"]</h3>
+        <div class="col">
+            @foreach (var paymentProvider in Model.PaymentProviders)
+            {
+                <div class="col-sm-12 col-md-12 p-t-20">
+                    <div class="payment-method paymentProvider-@paymentProvider.Id">
+                        @if (!string.IsNullOrWhiteSpace(paymentProvider.LandingViewComponentName))
+                        {
+                            @await Component.InvokeAsync(paymentProvider.LandingViewComponentName)
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        @await Component.InvokeAsync("OrderSummary")
+    </div>
+</div>

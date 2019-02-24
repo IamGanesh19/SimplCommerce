@@ -21,6 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Themes\AsritaSilks\Areas\Payments\Views\Checkout\Payment.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Payments\Views\Checkout\_ViewImports.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Payments\Views\Checkout\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Modules\SimplCommerce.Module.ActivityLog\SimplCommerce.Module.ActivityLog.csproj" />
     <ProjectReference Include="..\Modules\SimplCommerce.Module.Catalog\SimplCommerce.Module.Catalog.csproj" />
     <ProjectReference Include="..\Modules\SimplCommerce.Module.Cms\SimplCommerce.Module.Cms.csproj" />
@@ -69,6 +75,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Themes\AsritaSilks\Areas\PaymentCashfree\Views\" />
   </ItemGroup>
 
   <Target Name="CopyModule" AfterTargets="Build">
