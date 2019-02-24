@@ -19,8 +19,6 @@ namespace SimplCommerce.Module.ShoppingCart.Services
 
         Task<Cart> GetActiveCart(long customerId, long createdById);
 
-        IQueryable<Cart> GetActiveCartById(long cartId, long customerId);
-
         Task<CartVm> GetActiveCartDetails(long customerId);
 
         Task<CartVm> GetActiveCartDetails(long customerId, long createdById);        

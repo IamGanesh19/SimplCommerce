@@ -59,7 +59,11 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
             if (responseToken.Equals(cashfreeResponse.Signature))
             {
                 var curentUser = await _workContext.GetCurrentUser();
-                var cart = await _cartService.GetActiveCartById(Convert.ToInt64(cashfreeResponse.OrderId), curentUser.Id).FirstOrDefaultAsync();
+                var cart = await _cartService.GetActiveCart(curentUser.Id);
+                if (cart == null)
+                {
+                    return NotFound();
+                }
 
                 var orderCreateResult = await _orderService.CreateOrder(cart.Id, PaymentProviderHelper.CashfreeProviderId, 0, OrderStatus.PendingPayment);
 
@@ -69,16 +73,13 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                 }
 
                 var order = orderCreateResult.Value;
-                int zeroDecimalOrderAmount = 0;
-                if (!CurrencyHelper.IsZeroDecimalCurrencies())
-                {
-                    zeroDecimalOrderAmount = (int)order.OrderTotal;
-                }
+                int orderAmount = 0;
+                orderAmount = (int)order.OrderTotal;
 
                 var payment = new Payment()
                 {
                     OrderId = order.Id,
-                    Amount = order.OrderTotal,
+                    Amount = orderAmount,
                     PaymentMethod = PaymentProviderHelper.CashfreeProviderId,
                     CreatedOn = DateTimeOffset.UtcNow
                 };
