@@ -17,15 +17,16 @@
 }
 
 body, html {
-	font-family: Lato-Regular;
-	font-size: 15px;
-	color: #666666;
-
-	height: 100%;
-	background-color: #fff;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+    font-family: Lato-Regular;
+    font-size: 15px;
+    color: #666666;
+    /*height: 100%;*/
+    background-image: url(../images/background.png);
+    /*background-image: linear-gradient(to bottom right, #ffffff, #ffdbf6);
+    background-color: #fff;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /*---------------------------------------------*/

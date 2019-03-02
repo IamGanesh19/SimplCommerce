@@ -122,14 +122,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*//////////////////////////////////////////////////////////////////
 [ LOADDING ]*/
 .animsition-loading-1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .loader05 {
@@ -297,7 +297,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .header-v4 .wrap-menu-desktop {
-  background-color: #fff;
+    background-image: linear-gradient(to bottom right, #ffffff, #ffdbf6);
+    background-color: #fff;
 }
 
 
@@ -2049,6 +2050,7 @@ input.num-product::-webkit-inner-spin-button {
     transition: 0.3s;
     border-radius: 5px; 
     border: 1px solid rgba(0, 0, 0, 0.25);
+    background-color:#ffffff;
 }
 
 /*On mouse-over, add a deeper shadow*/ 
