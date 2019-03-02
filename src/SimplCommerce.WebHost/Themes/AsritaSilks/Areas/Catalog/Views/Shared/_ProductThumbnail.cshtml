@@ -1,15 +1,16 @@
 ﻿@model SimplCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductThumbnail
 
 <div class="block2">
-    <div class="block2-pic hov-img0" href="~/@Model.Slug">
-        <img alt="@Model.Name" class="card-img-top" src="@Model.ThumbnailUrl">
+    <a href="~/@Model.Slug">
+        <div class="block2-pic hov-img0" href="~/@Model.Slug">
+            <img alt="@Model.Name" class="card-img-top" src="@Model.ThumbnailUrl">
 
-        <a href="~/@Model.Slug" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-            View Details
-        </a>
-    </div>
+            <a href="~/@Model.Slug" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                View Details
+            </a>
+        </div>
 
-        <div class="block2-txt flex-w flex-t p-t-14">
+        <div class="card-body block2-txt flex-w flex-t p-t-14">
             <div class="block2-txt-child1 flex-col-l ">
                 <a href="~/@Model.Slug" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                     @Model.Name
@@ -32,17 +33,17 @@
                     }
                 </span>
             </div>
-
-            <div class="block2-txt-child2 flex-r p-t-3">
-                <ul class="list-inline product-ratings">
-                    <li><input type="hidden" value="@Model.RatingAverage" readonly="readonly" class="rating-loading" step="1" data-size="xs" data-show-clear="false" data-show-caption="false" /></li>
-                    @if (Model.ReviewsCount > 0)
-                    {
+            @if (Model.ReviewsCount > 0)
+            {
+                <div class="block2-txt-child2 flex-r p-t-3">
+                    <ul class="list-inline product-ratings">
+                        <li><input type="hidden" value="@Model.RatingAverage" readonly="readonly" class="rating-loading" step="1" data-size="xs" data-show-clear="false" data-show-caption="false" /></li>
                         <li class="product-review-list">
                             <span>(@Model.ReviewsCount @Localizer["reviews"])</span>
                         </li>
-                    }
-                </ul>
-            </div>
+                    </ul>
+                </div>
+            }
         </div>
+    </a>
 </div>
