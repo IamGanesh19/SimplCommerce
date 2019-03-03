@@ -97,13 +97,41 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   src: url('../fonts/Montserrat/Montserrat-Bold.ttf'); 
 }
 
+/*Button*/
+.btn-primary {
+    background: #d92827;
+    padding: 8px 43px;
+    color: #fff;
+    border: 0;
+    border-radius: 0;
+}
+
+.btn-primary:hover {
+    background: #d92827;
+    color: #fff;
+    border: 0;
+    border-radius: 0;
+}
+
+.btn-primary:checked {
+    background: #d92827;
+    color: #fff;
+    border: 0;
+    border-radius: 0;
+}
+
+.btn-light {
+    border: 0;
+    border-radius: 0;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
-
 /*------------------------------------------------------------------
 [ Bootstrap ]*/
-.container {max-width: 1380px;}
+.container {
+    max-width: 1380px;
+}
 .body-content{padding-top:20px;}
 .bread-crumb{padding-top:0px !important;}
 

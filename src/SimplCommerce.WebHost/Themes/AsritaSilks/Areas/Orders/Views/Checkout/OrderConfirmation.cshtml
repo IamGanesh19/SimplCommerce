@@ -2,4 +2,22 @@
     ViewBag.Title = "Order received";
 }
 
-<h2>@Localizer["Order received"]</h2>
+<div class="row">
+    <div class="col-md-3">
+        <partial name="_AccountMenu" />
+    </div>
+    <div class="col-md-9">
+        <h2>@Localizer["Order received"]</h2>
+        <hr />
+        <p class="stext-301">
+            Thank you. We got your order.
+        </p>
+        <p class="p-t-15">
+            We are currently processing your order and we will email you with confirmation shortly.            
+        </p>
+        <p class="p-t-20">
+            <a href="~/" role="button" class="btn btn-primary">Continue Shopping</a>
+            <a href="~/user/order-history" role="button" class="btn btn-light">View order history</a>
+        </p>
+    </div>
+</div>

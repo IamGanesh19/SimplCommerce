@@ -6,7 +6,7 @@
 }
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         @if (TempData["Error"] != null)
         {
             <div class="alert alert-danger" role="alert">@TempData["Error"]</div>
@@ -29,7 +29,7 @@
             </div>
         </div>        
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         @await Component.InvokeAsync("OrderSummary")
     </div>
 </div>
