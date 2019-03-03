@@ -18,5 +18,7 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.ViewModels
         public int Quantity { get; set; }
 
         public string ThumbnailImage { get; set; }
+
+        public string Slug { get; set; }
     }
 }

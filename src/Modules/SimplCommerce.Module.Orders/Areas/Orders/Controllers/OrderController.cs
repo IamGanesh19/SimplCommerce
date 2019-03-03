@@ -43,6 +43,7 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
                     {
                         ProductId = i.ProductId,
                         ProductName = i.Product.Name,
+                        Slug = i.Product.Slug,
                         Quantity = i.Quantity,
                         ThumbnailImage = i.Product.ThumbnailImage.FileName,
                         ProductOptions = i.Product.OptionCombinations.Select(o => o.Value)

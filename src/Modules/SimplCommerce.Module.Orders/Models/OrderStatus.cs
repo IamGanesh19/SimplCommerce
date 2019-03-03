@@ -1,15 +1,21 @@
-﻿namespace SimplCommerce.Module.Orders.Models
+﻿using System.ComponentModel;
+
+namespace SimplCommerce.Module.Orders.Models
 {
     public enum OrderStatus
     {
         New = 1,
 
+        [Description("Order On-Hold")]
         OnHold = 10,
 
+        [Description("Payment Pending")]
         PendingPayment = 20,
 
+        [Description("Order Received")]
         PaymentReceived = 30,
 
+        [Description("Payment Failed")]
         PaymentFailed = 35,
 
         Invoiced = 40,
