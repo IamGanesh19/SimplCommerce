@@ -1,15 +1,7 @@
 ﻿@model SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.ViewModels.CashfreeCheckoutForm
-<label>@Localizer["Pay Online with Card / Net Banking / UPI / Wallet"]</label>
 
-<div class="form-group">
-    <div class="col-md-12">
-        <button type="button" id="cashfree-payment-button" class="btn btn-order">@Localizer["Pay Online"]</button>
+<div id="payment-div" class="col-md-12 p-t-5 p-l-0">    
 </div>
-</div>
-
-
-<!-- Place the below div on your html -->
-<div id="payment-div"></div>
 
 <!-- Paste below code base before the closing tag(</body>) of body element -->
 <script src="https://www.cashfree.com/assets/cashfree.sdk.v1.2.js" type="text/javascript"></script>
@@ -53,21 +45,14 @@
             };
         }
         var config = {};
-        config.layout = { view: "popup", width: "650" };
+        config.layout = { view: "inline", container: "payment-div", width: "100%" };
         config.mode = "@Model.Mode";
         var response = CashFree.init(config);
         if (response.status == "OK") {
-            cfInitialized = true;
+            CashFree.makePayment(data, callback);
         } else {
             //handle error
             console.log(response.message);
         }
-
-        var button = document.querySelector('#cashfree-payment-button');
-        button.addEventListener('click', function () {
-            if (cfInitialized) {
-                CashFree.makePayment(data, callback);
-            }
-        });
     })();
 </script>

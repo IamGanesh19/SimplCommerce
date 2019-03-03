@@ -21,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Themes\AsritaSilks\Areas\Orders\Views\Checkout\OrderConfirmation.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Orders\Views\_ViewImports.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Payments\Views\Checkout\Payment.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Payments\Views\Checkout\_ViewImports.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Payments\Views\Checkout\_ViewStart.cshtml" />

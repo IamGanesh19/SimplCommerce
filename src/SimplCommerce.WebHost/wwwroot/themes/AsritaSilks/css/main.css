@@ -254,9 +254,9 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   border-left: 1px solid rgba(255,255,255,0.3);
 }
 
-.right-top-bar a:hover {
+/*.right-top-bar a:hover {
   color: #18ba9b;
-}
+}*/
 
 
 /*---------------------------------------------*/
@@ -297,7 +297,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .header-v4 .wrap-menu-desktop {
-    background-image: linear-gradient(to bottom right, #ffffff, #ffdbf6);
+    /*background-image: linear-gradient(to bottom right, #ffffff, #ffdbf6);*/
     background-color: #fff;
 }
 
@@ -3072,6 +3072,9 @@ input.num-product::-webkit-inner-spin-button {
 .hov-bg0:hover {background-color: #fff;}
 .hov-cl1:hover {color: #d92827;}
 .hov-bg1:hover {background-color: #d92827;}
+.hov-cl2:hover {
+    color: #b2b2b2;
+}
 
 /*---------------------------------------------*/
 .hov-img0 {

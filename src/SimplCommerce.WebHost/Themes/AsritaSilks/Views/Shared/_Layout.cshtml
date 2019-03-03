@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
-                        <a href="~/help-center" class="flex-c-m trans-04 p-lr-25">
+                        <a href="~/help-center" class="flex-c-m trans-04 p-lr-25 hov-cl2">
                             @Localizer["Help & FAQs"]
                         </a>
                         <partial name="_LoginPartial" />
@@ -129,7 +129,7 @@
         @RenderBody()
     </div>
     <!-- Footer -->
-    <footer class="bg3 p-t-75 p-b-32 m-t-75">
+    <footer class="bg5 p-t-75 p-b-32 m-t-75">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-lg-3 p-b-50">
@@ -141,64 +141,52 @@
 
                 <div class="col-sm-6 col-lg-3 p-b-50">
                     <h4 class="stext-301 cl0 p-b-30">
-                        @Localizer["Help"]
+                        @Localizer["About"]
                     </h4>
                     <vc:menu menu-id="1"></vc:menu>
                 </div>
 
                 <div class="col-sm-6 col-lg-3 p-b-50">
                     <h4 class="stext-301 cl0 p-b-30">
-                        @Localizer["GET IN TOUCH"]
+                        @Localizer["Information"]
                     </h4>
-
-                    <p class="stext-107 cl7 size-201">
-                        Any questions? Let us know in store at 732, Madurai Road, Theni - 625531, TamilNadu, INDIA or call us on (+91) 4546 260712
-                    </p>
-
-                    <div class="p-t-27">
-                        <a href="https://wa.me/914546260712" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-whatsapp"></i>
-                        </a>
-
-                        <a href="https://www.facebook.com/asritasilkstheni" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-
-                        <a href="#" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-
-                        <a href="#" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-youtube"></i>
-                        </a>                    
-                    </div>
+                    <vc:menu menu-id="3"></vc:menu>
                 </div>
 
                 <div class="col-sm-6 col-lg-3 p-b-50">
                     <h4 class="stext-301 cl0 p-b-30">
-                        @Localizer["Newsletter"]
+                        @Localizer["Get in Touch"]
                     </h4>
 
-                    <form>
-                        <div class="wrap-input1 w-full p-b-4">
-                            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-                            <div class="focus-input1 trans-04"></div>
-                        </div>
+                    <p class="stext-107 cl0 size-201">
+                        Any questions? Let us know in store at 732, Madurai Road, Theni - 625531, TamilNadu, INDIA or call us on (+91) 4546 260712
+                    </p>
 
-                        <div class="p-t-18">
-                            <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                                @Localizer["Subscribe"]
-                            </button>
-                        </div>
-                    </form>
+                    <div class="p-t-27">
+                        <a href="https://wa.me/914546260712" target="_blank" class="fs-18 cl0 hov-cl2 trans-04 m-r-16">
+                            <i class="fa fa-whatsapp"></i>
+                        </a>
+
+                        <a href="https://www.facebook.com/asritasilkstheni" target="_blank" class="fs-18 cl0 hov-cl2 trans-04 m-r-16">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="#" target="_blank" class="fs-18 cl0 hov-cl2 trans-04 m-r-16">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+
+                        <a href="#" target="_blank" class="fs-18 cl0 hov-cl2 trans-04 m-r-16">
+                            <i class="fa fa-youtube"></i>
+                        </a>
+                    </div>                    
                 </div>
             </div>
 
             <div>
-                <p class="stext-107 cl6 txt-center">
+                <p class="stext-107 cl9 txt-center">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script>  Asrita Silks | Powered by <a href="https://jeyantechnologies.com" target="_blank">Jeyan Technologies</a> | This theme is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <script>document.write(new Date().getFullYear());</script>  Asrita Silks | Powered by <a href="https://jeyantechnologies.com" class="stext-107 cl9 hov-cl0 trans-04" target="_blank">Jeyan Technologies</a> | This theme is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" class="stext-107 cl9 hov-cl0 trans-04" target="_blank">Colorlib</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>
