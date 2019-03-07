@@ -1,4 +1,5 @@
-﻿@{
+﻿@model long
+@{
     ViewBag.Title = "Order received";
 }
 
@@ -13,11 +14,11 @@
             Thank you. We got your order.
         </p>
         <p class="p-t-15">
-            We are currently processing your order and we will email you with confirmation shortly.            
+            We are currently processing your order and we will email you with confirmation shortly.
         </p>
         <p class="p-t-20">
+            <a href="~/user/order/@Model" role="button" class="btn btn-light">View order details</a>
             <a href="~/" role="button" class="btn btn-primary">Continue Shopping</a>
-            <a href="~/user/order-history" role="button" class="btn btn-light">View order history</a>
         </p>
     </div>
 </div>

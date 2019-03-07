@@ -36,7 +36,7 @@
                         data: event.response
                     })
                     .done(function (data) {
-                        window.location = "/checkout/success";
+                        window.location = "/checkout/success?orderId=@Model.OrderId";
 
                     })
                         .fail(function (errors) {
