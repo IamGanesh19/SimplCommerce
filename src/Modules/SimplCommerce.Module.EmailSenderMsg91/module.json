@@ -1,0 +1,6 @@
+{
+  "id": "SimplCommerce.Module.EmailSenderMsg91",
+  "name": "Msg91 Mailer",
+  "isBundledWithHost": true,
+  "version": "1.0.0"
+}

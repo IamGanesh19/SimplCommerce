@@ -138,5 +138,9 @@
     {
       "id": "SimplCommerce.Module.PaymentCashfree",
       "version": "1.0.0"
+    },
+    {
+      "id": "SimplCommerce.Module.EmailSenderMsg91",
+      "version": "1.0.0"
     }
 ]
