@@ -950,6 +950,27 @@ namespace SimplCommerce.WebHost.Migrations
                         },
                         new
                         {
+                            Id = "Msg91.Email.ApiKey",
+                            IsVisibleInCommonSettingPage = true,
+                            Module = "Msg91",
+                            Value = "152983AnL5bnkNOder591e8e0e"
+                        },
+                        new
+                        {
+                            Id = "Msg91.Email.From",
+                            IsVisibleInCommonSettingPage = true,
+                            Module = "Msg91",
+                            Value = "support@asritasilks.com"
+                        },
+                        new
+                        {
+                            Id = "Msg91.Email.ApiURL",
+                            IsVisibleInCommonSettingPage = true,
+                            Module = "Msg91",
+                            Value = "http://control.msg91.com/api/sendmail.php"
+                        },
+                        new
+                        {
                             Id = "News.PageSize",
                             IsVisibleInCommonSettingPage = true,
                             Module = "News",
@@ -2152,6 +2173,15 @@ namespace SimplCommerce.WebHost.Migrations
                             IsEnabled = true,
                             LandingViewComponentName = "MomoLanding",
                             Name = "Momo Payment"
+                        },
+                        new
+                        {
+                            Id = "Cashfree",
+                            AdditionalSettings = "{\"IsSandbox\":true,\"AppId\":\"358035b02486f36ca27904540853\",\"SecretKey\":\"26f48dcd6a27f89f59f28e65849e587916dd57b9\"}",
+                            ConfigureUrl = "payments-cashfree-config",
+                            IsEnabled = true,
+                            LandingViewComponentName = "CashfreeLanding",
+                            Name = "Cashfree Payment"
                         });
                 });
 

@@ -16,9 +16,9 @@ namespace SimplCommerce.Module.EmailSenderMsg91
 
         public EmailSender(IConfiguration configuration)
         {
-            _apiKey = configuration.GetValue<string>("Msg91:Email:ApiKey");
-            _from = configuration.GetValue<string>("Msg91:Email:From");
-            _apiURL = configuration.GetValue<string>("Msg91:Email:ApiURL");
+            _apiKey = configuration.GetValue<string>("Msg91.Email.ApiKey");
+            _from = configuration.GetValue<string>("Msg91.Email.From");
+            _apiURL = configuration.GetValue<string>("Msg91.Email.ApiURL");
 
             Contract.Requires(string.IsNullOrWhiteSpace(_apiKey));
             Contract.Requires(string.IsNullOrWhiteSpace(_from));
