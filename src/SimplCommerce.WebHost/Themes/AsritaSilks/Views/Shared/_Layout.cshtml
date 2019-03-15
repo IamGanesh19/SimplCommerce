@@ -3,6 +3,24 @@
 <!doctype html>
 <html>
 <head>
+    <environment include="Production">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4865444-3"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-4865444-3');
+        </script>
+        @*<script src="https://www.google.com/recaptcha/api.js?render=6LeTTZcUAAAAAIgPVBKHoKZsQyQeHKKNHxdTePak"></script>
+        <script>
+            grecaptcha.ready(function () {
+                grecaptcha.execute('reCAPTCHA_site_key', { action: 'homepage' }).then(function (token) {
+              });
+          });
+        </script>*@
+    </environment>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewData["Title"] - Asrita Silks</title>
