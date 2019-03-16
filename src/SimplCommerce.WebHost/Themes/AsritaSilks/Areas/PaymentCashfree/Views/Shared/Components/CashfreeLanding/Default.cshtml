@@ -28,7 +28,7 @@
                         data: event.response
                     })
                     .done(function (data) {
-                        window.location = "/checkout/success?orderId=@Model.OrderId";
+                        window.location = "/checkout/success?orderId="+data;
 
                     })
                         .fail(function (errors) {

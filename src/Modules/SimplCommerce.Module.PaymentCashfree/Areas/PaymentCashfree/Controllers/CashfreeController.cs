@@ -92,7 +92,7 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                     _paymentRepository.Add(payment);
                     await _paymentRepository.SaveChangesAsync();
 
-                    return Ok(cashfreeResponse.ReferenceId);
+                    return Ok(order.Id);
                 }
                 else
                 {
