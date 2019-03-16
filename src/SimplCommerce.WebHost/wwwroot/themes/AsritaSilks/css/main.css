@@ -98,26 +98,46 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 /*Button*/
+
 .btn-primary {
-    background: #d92827;
-    padding: 8px 43px;
     color: #fff;
+    background-color: #d92827;
+    border-color: #d92827;
     border: 0;
     border-radius: 0;
+    padding: 8px 43px;
 }
 
 .btn-primary:hover {
-    background: #d92827;
     color: #fff;
-    border: 0;
-    border-radius: 0;
+    background-color: #d92827;
+    border-color: #d92827;
 }
 
-.btn-primary:checked {
-    background: #d92827;
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0;
+    background-color: #d92827;
+    border-color: #d92827;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
     color: #fff;
-    border: 0;
-    border-radius: 0;
+    background-color: #d92827;
+    border-color: #d92827;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #d92827;
+    border-color: #d92827;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0;
+    background-color: #d92827;
+    border-color: #d92827;
 }
 
 .btn-light {

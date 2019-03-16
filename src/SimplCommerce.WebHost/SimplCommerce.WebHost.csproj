@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\ForgotPassword.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\Login.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\Register.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\Checkout\Success.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\_ViewImports.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\_ViewStart.cshtml" />
@@ -83,6 +87,7 @@
 
   <ItemGroup>
     <Folder Include="Themes\AsritaSilks\Areas\PaymentCashfree\Views\" />
+    <Folder Include="wwwroot\themes\AsritaSilks\lib\" />
   </ItemGroup>
 
   <Target Name="CopyModule" AfterTargets="Build">
