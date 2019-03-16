@@ -1,0 +1,22 @@
+﻿@inject SignInManager<User> SignInManager
+@{
+    ViewData["Title"] = "Confirm Email";
+}
+
+<h2>@ViewData["Title"].</h2>
+<hr />
+<div class="col-md-8">    
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <p>
+            Thank you for confirming your email.<br /><br />
+            <a href="~/" role="button" class="btn btn-primary">Continue Shopping</a>
+        </p>
+    }
+    else
+    {
+        <p>
+            Thank you for confirming your email. Please <a asp-area="Core" asp-controller="Account" asp-action="Login">Click here to Log in</a>.
+        </p>
+    }
+</div>

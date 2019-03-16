@@ -22,7 +22,7 @@ namespace SimplCommerce.Module.EmailSenderSmtp
         public async Task SendEmailAsync(string email, string subject, string body, bool isHtml = false)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Asrita Silks", "order-noreply@asritasilks.com"));
+            message.From.Add(new MailboxAddress("Asrita Silks", "eshop@asritasilks.com"));
             message.To.Add(new MailboxAddress(email));
             message.Subject = subject;
 
