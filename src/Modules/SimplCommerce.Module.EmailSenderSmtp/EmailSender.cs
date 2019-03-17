@@ -17,13 +17,20 @@ namespace SimplCommerce.Module.EmailSenderSmtp
             _emailConfig.SmtpUsername = config.GetValue<string>("SmtpUsername");
             _emailConfig.SmtpPassword = config.GetValue<string>("SmtpPassword");
             _emailConfig.SmtpPort = config.GetValue<int>("SmtpPort");
+            _emailConfig.SmtpFrom = config.GetValue<string>("SmtpFrom");
+            _emailConfig.SmtpFromDisplayName = config.GetValue<string>("SmtpFromDisplayName");            
         }
 
         public async Task SendEmailAsync(string email, string subject, string body, bool isHtml = false)
         {
+            await SendEmailAsync(_emailConfig.SmtpFrom, email, subject, body, isHtml);
+        }
+
+        public async Task SendEmailAsync(string from, string to, string subject, string body, bool isHtml = false)
+        {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Asrita Silks", "eshop@asritasilks.com"));
-            message.To.Add(new MailboxAddress(email));
+            message.From.Add(new MailboxAddress(_emailConfig.SmtpFromDisplayName, from));
+            message.To.Add(new MailboxAddress(to));
             message.Subject = subject;
 
             var textFormat = isHtml ? TextFormat.Html : TextFormat.Plain;

@@ -9,5 +9,9 @@
         public string SmtpUsername { get; set; }
 
         public string SmtpPassword { get; set; }
+
+        public string SmtpFrom { get; set; }
+
+        public string SmtpFromDisplayName { get; set; }
     }
 }

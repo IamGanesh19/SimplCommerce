@@ -22,13 +22,18 @@ namespace SimplCommerce.Module.EmailSenderSendgrid
         }
         public async Task SendEmailAsync(string email, string subject, string message, bool isHtml = false)
         {
+            await SendEmailAsync(_from, email, subject, message, isHtml);
+        }
+
+        public async Task SendEmailAsync(string from, string email, string subject, string message, bool isHtml = false)
+        {
             Contract.Requires(string.IsNullOrWhiteSpace(email));
             Contract.Requires(string.IsNullOrWhiteSpace(subject));
             Contract.Requires(string.IsNullOrWhiteSpace(message));
 
             var sendGridMessage = new SendGridMessage();
 
-            sendGridMessage.From = new EmailAddress(_from);
+            sendGridMessage.From = new EmailAddress(from);
             sendGridMessage.AddTo(new EmailAddress(email));
             sendGridMessage.Subject = subject;
             sendGridMessage.HtmlContent = isHtml ? message : "";

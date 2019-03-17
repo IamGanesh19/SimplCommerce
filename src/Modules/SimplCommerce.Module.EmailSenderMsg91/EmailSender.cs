@@ -24,7 +24,7 @@ namespace SimplCommerce.Module.EmailSenderMsg91
             Contract.Requires(string.IsNullOrWhiteSpace(_from));
             Contract.Requires(string.IsNullOrWhiteSpace(_apiURL));
         }
-        public async Task SendEmailAsync(string email, string subject, string message, bool isHtml = false)
+        public async Task SendEmailAsync(string from, string email, string subject, string message, bool isHtml = false)
         {
             Contract.Requires(string.IsNullOrWhiteSpace(email));
             Contract.Requires(string.IsNullOrWhiteSpace(subject));
@@ -44,6 +44,11 @@ namespace SimplCommerce.Module.EmailSenderMsg91
 
             var client = new HttpClient();
             await client.PostAsync(apiPost.ToString(), null);
+        }
+
+        public async Task SendEmailAsync(string email, string subject, string message, bool isHtml = false)
+        {
+            await SendEmailAsync(_from, email, subject, message, isHtml);
         }
     }
 }
