@@ -31,7 +31,7 @@ namespace SimplCommerce.Module.EmailSenderSmtp
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(_emailConfig.SmtpFromDisplayName, from));
             message.To.Add(new MailboxAddress(to));
-            message.Subject = subject;
+            message.Subject = subject; 
 
             var textFormat = isHtml ? TextFormat.Html : TextFormat.Plain;
             message.Body = new TextPart(textFormat)

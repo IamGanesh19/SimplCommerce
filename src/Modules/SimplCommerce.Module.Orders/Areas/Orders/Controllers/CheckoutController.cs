@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SimplCommerce.Infrastructure.Data;
 using SimplCommerce.Module.Core.Extensions;
 using SimplCommerce.Module.Core.Models;
 using SimplCommerce.Module.Orders.Areas.Orders.ViewModels;
+using SimplCommerce.Module.Orders.Models;
 using SimplCommerce.Module.Orders.Services;
 using SimplCommerce.Module.ShippingPrices.Services;
 using SimplCommerce.Module.ShoppingCart.Models;
@@ -30,6 +32,8 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
         private readonly ICartService _cartService;
         private readonly IWorkContext _workContext;
         private readonly IRepository<Cart> _cartRepository;
+        private readonly IOrderEmailService _orderEmailService;
+        private readonly IRepository<Order> _orderRepository;
 
         public CheckoutController(
             IRepository<StateOrProvince> stateOrProvinceRepository,
@@ -39,7 +43,9 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
             IOrderService orderService,
             ICartService cartService,
             IWorkContext workContext,
-            IRepository<Cart> cartRepository)
+            IRepository<Cart> cartRepository,
+            IOrderEmailService orderEmailService,
+            IRepository<Order> orderRepository)
         {
             _stateOrProvinceRepository = stateOrProvinceRepository;
             _countryRepository = countryRepository;
@@ -49,6 +55,8 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
             _cartService = cartService;
             _workContext = workContext;
             _cartRepository = cartRepository;
+            _orderEmailService = orderEmailService;
+            _orderRepository = orderRepository;
         }
 
         [HttpGet("shipping")]
@@ -103,8 +111,24 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
         }
 
         [HttpGet("success")]
-        public IActionResult Success(long orderId)
+        public async Task<IActionResult> Success(long orderId)
         {
+            // Send order received email
+            var currentUser = await _workContext.GetCurrentUser();
+            var order = _orderRepository
+                .Query()
+                .Include(x => x.ShippingAddress).ThenInclude(x => x.District)
+                .Include(x => x.ShippingAddress).ThenInclude(x => x.StateOrProvince)
+                .Include(x => x.ShippingAddress).ThenInclude(x => x.Country)
+                .Include(x => x.OrderItems).ThenInclude(x => x.Product).ThenInclude(x => x.ThumbnailImage)
+                .Include(x => x.OrderItems).ThenInclude(x => x.Product).ThenInclude(x => x.OptionCombinations).ThenInclude(x => x.Option)
+                .Include(x => x.Customer)
+                .FirstOrDefault(x => x.Id == orderId && x.CustomerId == currentUser.Id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            await _orderEmailService.SendEmailToUser(currentUser, order);
             return View(orderId);
         }
 

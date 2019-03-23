@@ -73,14 +73,11 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                 }
 
                 var order = orderCreateResult.Value;
-                int orderAmount = 0;
-                orderAmount = (int)order.OrderTotal;
-
                 var payment = new Payment()
                 {
                     OrderId = order.Id,
-                    Amount = orderAmount,
-                    PaymentMethod = PaymentProviderHelper.CashfreeProviderId,
+                    Amount = order.OrderTotal,
+                    PaymentMethod = PaymentProviderHelper.CashfreeProviderId + " - " + cashfreeResponse.PaymentMode,
                     CreatedOn = DateTimeOffset.UtcNow
                 };
 
@@ -97,8 +94,8 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                 else
                 {
                     payment.GatewayTransactionId = cashfreeResponse.ReferenceId;
-                    payment.Status = PaymentStatus.Succeeded;
-                    order.OrderStatus = OrderStatus.PaymentReceived;
+                    payment.Status = PaymentStatus.Failed;
+                    order.OrderStatus = OrderStatus.PaymentFailed;
                     _paymentRepository.Add(payment);
                     await _paymentRepository.SaveChangesAsync();                    
 
