@@ -16,7 +16,8 @@
     }
 
     //var baseURL = Context.Request.GetDisplayUrl();
-    var baseURL = "https://localhost:44388";
+    var baseURL = string.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host);
+    //var baseURL = "https://localhost:44388";
 }
 
 @{
