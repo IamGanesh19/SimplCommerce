@@ -15,12 +15,8 @@
         shippingDistrictName = $"{district.Name}, ";
     }
 
-    //var baseURL = Context.Request.GetDisplayUrl();
     var baseURL = string.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host);
-    //var baseURL = "https://localhost:44388";
-}
 
-@{
     Layout = null;
 }
 
@@ -517,7 +513,7 @@
                                                         <td class="es-m-p0r es-m-p20b" width="178" valign="top" align="center" style="padding:0;Margin:0;">
                                                             <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                                 <tr style="border-collapse:collapse;">
-                                                                    <td align="center" style="padding:0;Margin:0;"> <img src="@baseURL/user-content/@item.Product.ThumbnailImage.FileName" alt="@item.Product.Name" class="adapt-img" title="@item.Product.Name" width="125" height="105.62" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" /></td>
+                                                                    <td align="center" style="padding:0;Margin:0;"> <img src="@baseURL/user-content/@item.Product.ThumbnailImage.FileName" alt="@item.Product.Name" class="adapt-img" title="@item.Product.Name" height="110" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" /></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
