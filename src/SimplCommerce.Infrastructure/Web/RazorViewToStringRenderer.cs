@@ -19,18 +19,15 @@ namespace SimplCommerce.Infrastructure.Web
         private IRazorViewEngine _viewEngine;
         private ITempDataProvider _tempDataProvider;
         private IServiceProvider _serviceProvider;
-        private readonly IHttpContextAccessor _accessor;
 
         public RazorViewRenderer(
             IRazorViewEngine viewEngine,
             ITempDataProvider tempDataProvider,
-            IServiceProvider serviceProvider,
-            IHttpContextAccessor accessor)
+            IServiceProvider serviceProvider)
         {
             _viewEngine = viewEngine;
             _tempDataProvider = tempDataProvider;
             _serviceProvider = serviceProvider;
-            _accessor = accessor;
         }
 
         public async Task<string> RenderViewToStringAsync<TModel>(string viewName, TModel model)
@@ -39,7 +36,7 @@ namespace SimplCommerce.Infrastructure.Web
             var view = FindView(actionContext, viewName);
             var viewData = new ViewDataDictionary<TModel>(new EmptyModelMetadataProvider(), new ModelStateDictionary())
             {
-                Model = model
+                Model = model,
             };
 
             using (var output = new StringWriter())
@@ -85,7 +82,6 @@ namespace SimplCommerce.Infrastructure.Web
             {
                 RequestServices = _serviceProvider
             };
-            //var httpContext = _accessor.HttpContext;
             return new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
         }
     }

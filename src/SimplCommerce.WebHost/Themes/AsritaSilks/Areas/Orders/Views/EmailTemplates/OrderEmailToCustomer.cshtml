@@ -1,10 +1,11 @@
 ﻿@using SimplCommerce.Infrastructure.Data
 @using SimplCommerce.Module.Core.Models
-@using Microsoft.AspNetCore.Http.Extensions
+@using Microsoft.Extensions.Configuration
 
 @model SimplCommerce.Module.Orders.Models.Order
 @inject IRepository<StateOrProvince> StateOrProvinceRepository
 @inject IRepository<District> DistrictRepository
+@inject IConfiguration Config
 
 @{
     var shippingStateOrProvince = StateOrProvinceRepository.Query().First(x => x.Id == Model.ShippingAddress.StateOrProvinceId);
@@ -15,7 +16,8 @@
         shippingDistrictName = $"{district.Name}, ";
     }
 
-    var baseURL = string.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host);
+    //var baseURL = string.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host);
+    var baseURL = Config.GetValue<string>("BaseURL");
 
     Layout = null;
 }
