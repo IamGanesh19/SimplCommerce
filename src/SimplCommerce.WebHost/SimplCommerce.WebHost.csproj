@@ -26,6 +26,9 @@
     <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\ForgotPasswordConfirmation.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\Login.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\Register.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Core\Views\EmailTemplates\ForgotPassword.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Core\Views\EmailTemplates\Welcome.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Core\Views\EmailTemplates\Welcome.html" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\Checkout\Success.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\EmailTemplates\Order Confirmation non minimized.html" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\EmailTemplates\OrderEmailToCustomer.cshtml" />

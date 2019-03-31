@@ -23,6 +23,7 @@ namespace SimplCommerce.Module.Core
             serviceCollection.AddScoped<ISmsSender, SmsSender>();
             serviceCollection.AddSingleton<SettingDefinitionProvider>();
             serviceCollection.AddScoped<ISettingService, SettingService>();
+            serviceCollection.AddTransient<IAccountEmailService, AccountEmailService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
