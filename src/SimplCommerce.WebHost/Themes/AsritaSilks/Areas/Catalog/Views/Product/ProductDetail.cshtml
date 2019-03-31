@@ -1,4 +1,7 @@
-﻿@model SimplCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductDetail
+﻿@using SimplCommerce.Module.Core.Models
+
+@model SimplCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductDetail
+@inject SignInManager<User> SignInManager
 
 @{
     ViewBag.Title = Model.MetaTitle ?? Model.Name;
@@ -127,10 +130,17 @@
                                 <button type="button" disabled="@(!variant.IsAllowToOrder || (variant.StockTrackingIsEnabled && variant.StockQuantity <= 0))" class="btn btn-lg btn-add-cart btn-order">@Localizer["Add to cart"]</button>
                                 <div>
                                     <ul class="list-inline add-to-wishlist">
-                                        @*<li class="wishlist-in">
-                                                <i class="fa fa-heart"></i>
-                                                <a href="#">Add to Wishlist</a>
-                                            </li>*@
+                                        <li class="wishlist-in">
+                                            <i class="fa fa-heart"></i>
+                                            @if (SignInManager.IsSignedIn(User))
+                                            {
+                                                <a href="#" class="add-to-wishlist">@Localizer["Add to Wishlist"]</a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-area="Core" asp-controller="Account" asp-action="Login" asp-route-returnurl="@($"{Context.Request.Path}{Context.Request.QueryString}")">@Localizer["Add to Wishlist"]</a>
+                                            }
+                                        </li>
                                         <li class="compare-in">
                                             <i class="fa fa-exchange"></i>
                                             <a href="#" class="add-to-comparison">@Localizer["Add to Compare"]</a>
@@ -179,10 +189,17 @@
                         <button type="button" disabled="@(!Model.IsAllowToOrder || (Model.StockTrackingIsEnabled && Model.StockQuantity <= 0))" class="btn btn-lg btn-add-cart btn-order">@Localizer["Add to cart"]</button>
                         <div>
                             <ul class="list-inline add-to-wishlist">
-                                @*<li class="wishlist-in">
-                                        <i class="fa fa-heart"></i>
-                                        <a href="#">Add to Wishlist</a>
-                                    </li>*@
+                                <li class="wishlist-in">
+                                    <i class="fa fa-heart"></i>
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <a href="#" class="add-to-wishlist">@Localizer["Add to Wishlist"]</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-area="Core" asp-controller="Account" asp-action="Login" asp-route-returnurl="@($"{Context.Request.Path}{Context.Request.QueryString}")">@Localizer["Add to Wishlist"]</a>
+                                    }
+                                </li>
                                 <li class="compare-in">
                                     <i class="fa fa-exchange"></i>
                                     <a href="#" class="add-to-comparison">@Localizer["Add to Compare"]</a>

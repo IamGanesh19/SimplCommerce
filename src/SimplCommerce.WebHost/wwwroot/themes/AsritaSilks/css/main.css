@@ -2202,6 +2202,7 @@ input.num-product::-webkit-inner-spin-button {
 .cl10 {color: #1d1d1d;}
 .cl11 {color: #f9ba48;}
 .cl12 {color: #ccc;}
+.cl13{color:#000;}
 
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/
@@ -2716,6 +2717,9 @@ input.num-product::-webkit-inner-spin-button {
 .bg7 {background-color: #333;}
 .bg8 {background-color: #f3f3f3;}
 .bg9 {background-color: rgba(255,255,255,0.9);}
+.bg10 {
+    background-color: rgb(250, 172, 31)
+}
 
 /*---------------------------------------------*/
 .bg-overlay1::before {
