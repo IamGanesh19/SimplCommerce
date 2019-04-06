@@ -26,19 +26,58 @@ namespace SimplCommerce.Module.Orders.Services
 
         public async Task SendEmailToUser(User user, Order order)
         {
-            var viewPath = "/Areas/Orders/Views/EmailTemplates/OrderEmailToCustomer.cshtml";
-            if (!string.IsNullOrWhiteSpace(theme) && !string.Equals(theme, "Generic", System.StringComparison.InvariantCultureIgnoreCase))
+            var viewPath = string.Empty;
+            var emailSubject = string.Empty;
+            switch (order.OrderStatus)
             {
-                var themeViewPath = $"/Themes/{theme}{viewPath}";
-                var result = _viewEngine.GetView("", themeViewPath, isMainPage: false);
-                if (result.Success)
-                {
-                    viewPath = themeViewPath;
-                }
+                case OrderStatus.New:
+                    viewPath = "/Areas/Orders/Views/EmailTemplates/OrderEmailToCustomer.cshtml";
+                    emailSubject = $"Order Confirmation";
+                    break;
+                case OrderStatus.OnHold:
+                    break;
+                case OrderStatus.PendingPayment:
+                    break;
+                case OrderStatus.PaymentReceived:
+                    viewPath = "/Areas/Orders/Views/EmailTemplates/OrderEmailToCustomer.cshtml";
+                    emailSubject = $"Order Confirmation";
+                    break;
+                case OrderStatus.PaymentFailed:
+                    break;
+                case OrderStatus.Invoiced:
+                    break;
+                case OrderStatus.Shipping:
+                    break;
+                case OrderStatus.Shipped:
+                    viewPath = "/Areas/Orders/Views/EmailTemplates/ShippedEmailToCustomer.cshtml";
+                    emailSubject = $"Order Shipped";
+                    break;
+                case OrderStatus.Complete:
+                    break;
+                case OrderStatus.Canceled:
+                    break;
+                case OrderStatus.Refunded:
+                    break;
+                case OrderStatus.Closed:
+                    break;
+                default:
+                    break;
             }
-            var emailBody = await _viewRender.RenderViewToStringAsync(viewPath, order);
-            var emailSubject = $"Order Confirmation";
-            await _emailSender.SendEmailAsync(user.Email, emailSubject, emailBody, true);
+            if (!string.IsNullOrWhiteSpace(viewPath) && !string.IsNullOrWhiteSpace(emailSubject))
+            {
+                if (!string.IsNullOrWhiteSpace(theme) && !string.Equals(theme, "Generic", System.StringComparison.InvariantCultureIgnoreCase))
+                {
+                    var themeViewPath = $"/Themes/{theme}{viewPath}";
+                    var result = _viewEngine.GetView("", themeViewPath, isMainPage: false);
+                    if (result.Success)
+                    {
+                        viewPath = themeViewPath;
+                    }
+                }
+            
+                var emailBody = await _viewRender.RenderViewToStringAsync(viewPath, order);                
+                await _emailSender.SendEmailAsync(user.Email, emailSubject, emailBody, true);
+            }
         }
     }
 }

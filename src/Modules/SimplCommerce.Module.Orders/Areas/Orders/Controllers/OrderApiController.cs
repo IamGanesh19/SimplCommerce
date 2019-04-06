@@ -224,10 +224,16 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
                 return BadRequest(new { error = "You don't have permission to manage this order" });
             }
 
+            var oldStatus = order.OrderStatus;
+            var newStatus = (OrderStatus)model.StatusId;
+            if (oldStatus == newStatus)
+            { 
+                return BadRequest(new { Error = "Duplicate order status. Old and new order status are same." });
+            }
+
             if (Enum.IsDefined(typeof(OrderStatus), model.StatusId))
             {
-                var oldStatus = order.OrderStatus;
-                order.OrderStatus = (OrderStatus)model.StatusId;
+                order.OrderStatus = newStatus;
                 await _orderRepository.SaveChangesAsync();
 
                 var orderStatusChanged = new OrderChanged
