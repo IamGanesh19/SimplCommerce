@@ -38,6 +38,7 @@
         'simplAdmin.recentlyViewed',
         'simplAdmin.paymentBraintree',
         'simplAdmin.paymentMomo',
+        'simplAdmin.paymentNganLuong',
         'simplAdmin.paymentCashfree'
     ]);
 
