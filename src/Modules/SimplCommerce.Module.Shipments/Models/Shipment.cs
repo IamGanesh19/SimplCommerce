@@ -23,6 +23,12 @@ namespace SimplCommerce.Module.Shipments.Models
         [StringLength(450)]
         public string TrackingNumber { get; set; }
 
+        [StringLength(200)]
+        public string Courier { get; set; }
+
+        [StringLength(200)]
+        public string Status { get; set; }
+
         public long WarehouseId { get; set; }
 
         public long? VendorId { get; set; }
