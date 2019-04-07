@@ -12,7 +12,9 @@ namespace SimplCommerce.Module.EmailSenderSmtp.Data
                 new AppSetting("SmtpServer") { Module = "EmailSenderSmpt", IsVisibleInCommonSettingPage = false, Value = "smtp.gmail.com" },
                 new AppSetting("SmtpPort") { Module = "EmailSenderSmpt", IsVisibleInCommonSettingPage = false, Value = "587" },
                 new AppSetting("SmtpUsername") { Module = "EmailSenderSmpt", IsVisibleInCommonSettingPage = false, Value = "" },
-                new AppSetting("SmtpPassword") { Module = "EmailSenderSmpt", IsVisibleInCommonSettingPage = false, Value = "" }
+                new AppSetting("SmtpPassword") { Module = "EmailSenderSmpt", IsVisibleInCommonSettingPage = false, Value = "" },
+                new AppSetting("SmtpFrom") { Module = "EmailSenderSmpt", IsVisibleInCommonSettingPage = false, Value = "" },
+                new AppSetting("SmtpFromDisplayName") { Module = "EmailSenderSmpt", IsVisibleInCommonSettingPage = false, Value = "" }
             );
         }
     }

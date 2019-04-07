@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimplCommerce.Module.Core.Data;
 
 namespace SimplCommerce.WebHost.Migrations
 {
     [DbContext(typeof(SimplDbContext))]
-    partial class SimplDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190407083155_CashfreePayment-India")]
+    partial class CashfreePaymentIndia
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -944,20 +946,6 @@ namespace SimplCommerce.WebHost.Migrations
                         new
                         {
                             Id = "SmtpPassword",
-                            IsVisibleInCommonSettingPage = false,
-                            Module = "EmailSenderSmpt",
-                            Value = ""
-                        },
-                        new
-                        {
-                            Id = "SmtpFrom",
-                            IsVisibleInCommonSettingPage = false,
-                            Module = "EmailSenderSmpt",
-                            Value = ""
-                        },
-                        new
-                        {
-                            Id = "SmtpFromDisplayName",
                             IsVisibleInCommonSettingPage = false,
                             Module = "EmailSenderSmpt",
                             Value = ""
