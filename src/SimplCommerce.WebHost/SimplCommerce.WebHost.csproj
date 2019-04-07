@@ -21,6 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190407073658_CashfreePayment.cs" />
+    <Compile Remove="Migrations\20190407073658_CashfreePayment.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\ConfirmEmail.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\ForgotPassword.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Core\Views\Account\ForgotPasswordConfirmation.cshtml" />
