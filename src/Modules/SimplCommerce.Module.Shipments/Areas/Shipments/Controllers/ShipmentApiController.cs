@@ -84,6 +84,8 @@ namespace SimplCommerce.Module.Shipments.Areas.Shipments.Controllers
                 {
                     x.Id,
                     x.TrackingNumber,
+                    x.Courier,
+                    x.Status,
                     x.OrderId,
                     WarehouseName = x.Warehouse.Name,
                     x.CreatedOn
@@ -144,6 +146,8 @@ namespace SimplCommerce.Module.Shipments.Areas.Shipments.Controllers
                 {
                     x.Id,
                     x.TrackingNumber,
+                    x.Courier,
+                    x.Status,
                     x.OrderId,
                     WarehouseName = x.Warehouse.Name,
                     x.CreatedOn
@@ -162,6 +166,8 @@ namespace SimplCommerce.Module.Shipments.Areas.Shipments.Controllers
                     x.VendorId,
                     WarehouseName = x.Warehouse.Name,
                     x.TrackingNumber,
+                    x.Courier,
+                    x.Status,
                     x.CreatedOn,
                     ShippingAddress = new
                     {
@@ -209,6 +215,8 @@ namespace SimplCommerce.Module.Shipments.Areas.Shipments.Controllers
                     WarehouseId = model.WarehouseId,
                     CreatedById = currentUser.Id,
                     TrackingNumber = model.TrackingNumber,
+                    Courier = model.Courier,
+                    Status = model.Status.ToString(),
                     CreatedOn = DateTimeOffset.Now,
                     LatestUpdatedOn = DateTimeOffset.Now
                 };

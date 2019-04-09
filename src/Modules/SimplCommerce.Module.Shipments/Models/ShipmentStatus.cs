@@ -2,5 +2,9 @@
 {
     public enum ShipmentStatus
     {
+        Shipped,
+        InTransit,
+        OutForDelivery,
+        Delivered
     }
 }

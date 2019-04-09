@@ -108,6 +108,9 @@ namespace SimplCommerce.Module.Shipments.Services
 
             _shipmentRepository.Add(shipment);
             await _shipmentRepository.SaveChangesAsync();
+
+            // TO DO - Plugin the After Ship tracking code to post the tracking to AfterShip
+
             return Result.Ok();
         }
     }
