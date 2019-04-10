@@ -12,7 +12,8 @@
             getItemsToShip: getItemsToShip,
             createShipment: createShipment,
             getShipment: getShipment,
-            getShipmentsByOrder: getShipmentsByOrder
+            getShipmentsByOrder: getShipmentsByOrder,
+            getCouriers: getCouriers
         };
         return service;
 
@@ -38,6 +39,10 @@
 
         function getShipmentsByOrder(orderId) {
             return $http.get('api/orders/' + orderId + '/shipments');
+        }
+
+        function getCouriers() {
+            return $http.get('api/shipments/couriers');
         }
     }
 })();

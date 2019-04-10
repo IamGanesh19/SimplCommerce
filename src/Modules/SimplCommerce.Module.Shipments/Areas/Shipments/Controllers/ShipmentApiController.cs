@@ -255,5 +255,11 @@ namespace SimplCommerce.Module.Shipments.Areas.Shipments.Controllers
 
             return BadRequest(ModelState);
         }
+
+        [HttpGet("couriers")]
+        public async Task<IActionResult> GetCouriers()
+        {            
+            return Ok();
+        }
     }
 }

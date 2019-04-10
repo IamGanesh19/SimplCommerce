@@ -6,6 +6,11 @@
         <div class="col-md-6 text-right">
             <form class="form-inline">
                 <div class="form-group">
+                    <label>{{::vm.translate.get('Courier')}}</label>
+                    <select class="form-control" ng-model="vm.shipmentForm.courier"
+                            ng-options="courier.id as courier.name for courier in vm.couriers"></select>
+                </div>
+                <div class="form-group">
                     <label>{{::vm.translate.get('Tracking number')}}</label>
                     <input class="form-control" ng-model="vm.shipmentForm.trackingNumber" />
                 </div>

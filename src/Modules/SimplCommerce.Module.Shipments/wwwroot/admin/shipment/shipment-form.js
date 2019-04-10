@@ -10,6 +10,7 @@
         vm.orderId = $stateParams.orderId;
         vm.translate = translateService;
         vm.warehouses = [];
+        vm.couriers = [];
         vm.shipmentForm = { items : [] };
 
         vm.save = function save() {
@@ -39,8 +40,18 @@
             });
         }
 
+        function getCouriers() {
+            shipmentService.getCouriers().then(function (result) {
+                vm.couriers = result.data;
+                if (vm.couriers.length >= 1 && !vm.shipmentForm.courier) {
+                    vm.shipmentForm.courier = vm.couriers[0];
+                }
+            });
+        }
+
         function init() {
             getWarehouses();
+            getCouriers();
         }
 
         init();
