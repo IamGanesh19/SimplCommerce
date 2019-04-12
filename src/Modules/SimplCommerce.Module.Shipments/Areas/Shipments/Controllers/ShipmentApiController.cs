@@ -21,15 +21,17 @@ namespace SimplCommerce.Module.Shipments.Areas.Shipments.Controllers
     {
         private readonly IRepository<Shipment> _shipmentRepository;
         private readonly IShipmentService _shipmentService;
+        private readonly IShipmentTracker _shipmentTracker;
         private readonly IRepository<Order> _orderRepository;
         private readonly IWorkContext _workContext;
 
-        public ShipmentApiController(IRepository<Shipment> shipmentRepository, IShipmentService shipmentService, IRepository<Order> orderRepository, IWorkContext workContext)
+        public ShipmentApiController(IRepository<Shipment> shipmentRepository, IShipmentService shipmentService, IRepository<Order> orderRepository, IWorkContext workContext, IShipmentTracker shipmentTracker)
         {
             _shipmentRepository = shipmentRepository;
             _shipmentService = shipmentService;
             _orderRepository = orderRepository;
             _workContext = workContext;
+            _shipmentTracker = shipmentTracker;
         }
 
         [HttpGet("/api/orders/{orderId}/items-to-ship")]
@@ -247,6 +249,7 @@ namespace SimplCommerce.Module.Shipments.Areas.Shipments.Controllers
                 var result = await _shipmentService.CreateShipment(shipment);
                 if (result.Success)
                 {
+                    _shipmentTracker.CreateTracking(model.Courier, model.TrackingNumber);
                     return CreatedAtAction(nameof(Get), new { id = shipment.Id }, null);
                 }
 
@@ -259,7 +262,7 @@ namespace SimplCommerce.Module.Shipments.Areas.Shipments.Controllers
         [HttpGet("couriers")]
         public async Task<IActionResult> GetCouriers()
         {            
-            return Ok();
+            return Ok(_shipmentTracker.GetCouriers());
         }
     }
 }

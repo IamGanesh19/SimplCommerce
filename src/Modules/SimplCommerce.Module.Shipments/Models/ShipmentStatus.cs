@@ -5,6 +5,8 @@
         Shipped,
         InTransit,
         OutForDelivery,
-        Delivered
+        Delivered,
+        AttemptFail,
+        Exception
     }
 }

@@ -15,6 +15,8 @@ namespace SimplCommerce.Module.Shipments
         {
             services.AddTransient<INotificationHandler<OrderDetailGot>, OrderDetailGotHandler>();
             services.AddTransient<IShipmentService, ShipmentService>();
+
+            services.AddHostedService<ShipmentStatusUpdateBackgroundService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

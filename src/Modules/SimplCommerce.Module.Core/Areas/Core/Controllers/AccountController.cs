@@ -112,7 +112,7 @@ namespace SimplCommerce.Module.Core.Areas.Core.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, FullName = model.FullName };
+                var user = new User { UserName = model.Email, Email = model.Email, FullName = model.FullName, PhoneNumber = model.PhoneNumber };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -219,7 +219,7 @@ namespace SimplCommerce.Module.Core.Areas.Core.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new User { UserName = model.Email, Email = model.Email, FullName = model.FullName };
+                var user = new User { UserName = model.Email, Email = model.Email, FullName = model.FullName, PhoneNumber = model.PhoneNumber };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

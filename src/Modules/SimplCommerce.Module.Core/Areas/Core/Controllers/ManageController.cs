@@ -71,7 +71,7 @@ namespace SimplCommerce.Module.Core.Areas.Core.Controllers
         public async Task<IActionResult> UserInfo()
         {
             var user = await GetCurrentUserAsync();
-            var model = new UserInfoVm { Email = user.Email, FullName = user.FullName };
+            var model = new UserInfoVm { Email = user.Email, FullName = user.FullName, PhoneNumber = user.PhoneNumber };
             return View(model);
         }
 
@@ -85,6 +85,7 @@ namespace SimplCommerce.Module.Core.Areas.Core.Controllers
 
             var user = await GetCurrentUserAsync();
             user.FullName = model.FullName;
+            user.PhoneNumber = model.PhoneNumber;
             await _userManager.UpdateAsync(user);
             return RedirectToAction("UserInfo");
         }

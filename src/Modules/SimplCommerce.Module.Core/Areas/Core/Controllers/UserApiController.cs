@@ -112,6 +112,7 @@ namespace SimplCommerce.Module.Core.Areas.Core.Controllers
                     user.Id,
                     user.Email,
                     user.FullName,
+                    user.PhoneNumber,
                     user.CreatedOn,
                     Roles = user.Roles.Select(x => x.Role.Name),
                     CustomerGroups = user.CustomerGroups.Select(x => x.CustomerGroup.Name)

@@ -1,0 +1,6 @@
+{
+  "id": "SimplCommerce.Module.ShipmentTrackingAfterShip",
+  "name": "Aftership Tracking",
+  "isBundledWithHost": true,
+  "version": "1.0.0"
+}

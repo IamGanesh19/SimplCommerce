@@ -34,8 +34,9 @@ namespace SimplCommerce.Module.Shipments.Services
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     var shipmentRepository = scope.ServiceProvider.GetRequiredService<IRepository<Shipment>>();
+                    var shipmentTracker = scope.ServiceProvider.GetRequiredService<IShipmentTracker>();
                     var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-                    await UpdateOrderStatus(shipmentRepository, mediator, stoppingToken);
+                    await UpdateShipmentStatus(shipmentRepository, shipmentTracker, mediator, stoppingToken);
                 }
 
                 await Task.Delay(TimeSpan.FromMinutes(10), stoppingToken);
@@ -44,29 +45,24 @@ namespace SimplCommerce.Module.Shipments.Services
             _logger.LogInformation("ShipmentStatusUpdateBackgroundService is stopping.");
         }
 
-        private async Task UpdateOrderStatus(IRepository<Shipment> shipmentRepository, IMediator mediator, CancellationToken stoppingToken)
+        private async Task UpdateShipmentStatus(IRepository<Shipment> shipmentRepository, IShipmentTracker shipmentTracker, IMediator mediator, CancellationToken stoppingToken)
         {
             var shipmentsToTrack = shipmentRepository.Query().Where(x =>
                 x.Order.OrderStatus == OrderStatus.Shipped
-                && !string.IsNullOrWhiteSpace(x.TrackingNumber));
+                && !string.IsNullOrWhiteSpace(x.TrackingNumber)
+                && !string.IsNullOrWhiteSpace(x.Courier));
 
-            //foreach (var order in shipmentsToTrack)
-            //{
-            //    orderService.CancelOrder(order);
-            //    var orderStatusChanged = new OrderChanged
-            //    {
-            //        OrderId = order.Id,
-            //        OldStatus = OrderStatus.PendingPayment,
-            //        NewStatus = OrderStatus.Canceled,
-            //        UserId = SystemUserId,
-            //        Order = order,
-            //        Note = "System canceled"
-            //    };
+            foreach (var shipment in shipmentsToTrack)
+            {
+                var shipmentStatus = shipmentTracker.GetLastknownStatus(shipment.Courier, shipment.TrackingNumber);
+                if (!shipmentStatus.ToString().Equals(shipment.Status, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    shipment.Status = shipmentStatus.ToString();
+                    // TO DO Mediator Publish if needed
+                }
+            }
 
-            //    await mediator.Publish(orderStatusChanged, stoppingToken);
-            //}
-
-            //await orderRepository.SaveChangesAsync();
+            await shipmentRepository.SaveChangesAsync();
         }
     }
 }

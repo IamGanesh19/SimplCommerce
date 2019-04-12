@@ -23,5 +23,10 @@ namespace SimplCommerce.Module.Core.Areas.Core.ViewModels.Account
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "The {0} field is required.")]
+        [Phone]
+        [Display(Name = "Mobile Number")]
+        public string PhoneNumber { get; set; }
     }
 }

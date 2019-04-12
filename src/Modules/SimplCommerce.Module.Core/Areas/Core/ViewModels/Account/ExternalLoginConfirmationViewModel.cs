@@ -11,5 +11,9 @@ namespace SimplCommerce.Module.Core.Areas.Core.ViewModels.Account
         [Required(ErrorMessage = "The {0} field is required.")]
         [Display(Name = "Name")]
         public string FullName { get; set; }
+
+        [Required(ErrorMessage = "The {0} field is required.")]
+        [Phone]
+        public string PhoneNumber { get; set; }
     }
 }

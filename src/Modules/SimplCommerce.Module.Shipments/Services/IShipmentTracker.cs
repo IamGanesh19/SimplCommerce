@@ -6,8 +6,10 @@ namespace SimplCommerce.Module.Shipments.Services
 {
     public interface IShipmentTracker
     {
-        Task CreateTracking(string courier, string trackingNumber);
+        void CreateTracking(string courier, string trackingNumber);
 
-        Task<IList<Courier>> GetCouriers();
+        IList<Courier> GetCouriers();
+
+        ShipmentStatus GetLastknownStatus(string courier, string trackingNumber);
     }
 }
