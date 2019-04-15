@@ -65,7 +65,7 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                     return NotFound();
                 }
 
-                var orderCreateResult = await _orderService.CreateOrder(cart.Id, PaymentProviderHelper.CashfreeProviderId, 0, OrderStatus.PendingPayment);
+                var orderCreateResult = await _orderService.CreateOrder(cart.Id, cashfreeResponse.PaymentMode, 0, OrderStatus.PendingPayment);
 
                 if (!orderCreateResult.Success)
                 {
@@ -78,7 +78,8 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                     OrderId = order.Id,
                     Amount = order.OrderTotal,
                     PaymentMethod = PaymentProviderHelper.CashfreeProviderId + " - " + cashfreeResponse.PaymentMode,
-                    CreatedOn = DateTimeOffset.UtcNow
+                    //CreatedOn = DateTimeOffset.UtcNow
+                    CreatedOn = cashfreeResponse.TxTime
                 };
 
                 if (cashfreeResponse.TxStatus == "SUCCESS")
@@ -95,6 +96,7 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                 {
                     payment.GatewayTransactionId = cashfreeResponse.ReferenceId;
                     payment.Status = PaymentStatus.Failed;
+                    payment.FailureMessage = cashfreeResponse.TxMsg;
                     order.OrderStatus = OrderStatus.PaymentFailed;
                     _paymentRepository.Add(payment);
                     await _paymentRepository.SaveChangesAsync();                    

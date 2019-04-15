@@ -34,12 +34,12 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             var cashfreeProvider = await _paymentProviderRepository.Query().FirstOrDefaultAsync(x => x.Id == PaymentProviderHelper.CashfreeProviderId);
             var cashfreeSetting = JsonConvert.DeserializeObject<CashfreeConfigForm>(cashfreeProvider.AdditionalSettings);
             var currentUser = await _workContext.GetCurrentUser();
-            var cart = await _cartService.GetActiveCartDetails(currentUser.Id);            
-            currentUser.PhoneNumber = "8903440712"; // TODO Get customer mobile number
+            var cart = await _cartService.GetActiveCartDetails(currentUser.Id);
 
             // Converted to integer to remove the decimal value for INR
-            int amount = 0;
-            amount = (int)cart.OrderTotal;
+            //int amount = 0;
+            //amount = (int)cart.OrderTotal;
+            var amount = String.Format("{0:.##}", cart.OrderTotal);
 
             var orderId = DateTime.Today.ToString("ddMMyyyy") + "_" + cart.Id;
             var message = "appId=" + cashfreeSetting.AppId + "&orderId=" + orderId + "&orderAmount=" + amount + "&returnUrl=" + cashfreeSetting.ReturnURL + "&paymentModes=" + cashfreeSetting.PaymentModes;

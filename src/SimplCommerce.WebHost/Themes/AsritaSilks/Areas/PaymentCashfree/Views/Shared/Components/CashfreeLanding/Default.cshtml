@@ -31,10 +31,8 @@
                         window.location = "/checkout/success?orderId="+data;
 
                     })
-                        .fail(function (errors) {
-                            $('#alertBraintree').html(errors.responseText);
-                            $('.alert').toggle()
-                            console.log(errors.responseText);
+                    .fail(function (errors) {
+                        window.location = "/checkout/error?error=" + errors;
                     });
                     break;
                 case "PAYMENT_REQUEST":

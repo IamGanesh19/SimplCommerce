@@ -8,7 +8,7 @@
 
         public string Mode { get; set; }
 
-        public int OrderAmount { get; set; }
+        public string OrderAmount { get; set; }
 
         public string OrderId { get; set; }
 

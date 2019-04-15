@@ -18,7 +18,7 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.ViewModels
 
         public string TxMsg { get; set; }
 
-        public string TxTime { get; set; }
+        public DateTime TxTime { get; set; }
 
         public string Signature { get; set; }
     }

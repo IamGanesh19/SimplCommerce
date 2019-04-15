@@ -36,13 +36,10 @@
                         data: event.response
                     })
                     .done(function (data) {
-                        window.location = "/checkout/success?orderId="+data;
-
+                        window.location = "/checkout/success?orderId=" + data;
                     })
-                        .fail(function (errors) {
-                            $('#alertBraintree').html(errors.responseText);
-                            $('.alert').toggle()
-                            console.log(errors.responseText);
+                    .fail(function (errors) {
+                        window.location = "/checkout/error";
                     });
                     break;
                 case "PAYMENT_REQUEST":
