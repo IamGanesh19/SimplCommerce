@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model long
 
 @{
     ViewBag.Title = "Order Failure";
@@ -19,12 +19,25 @@
         <p class="stext-301">
             Error in processing payment.
         </p>
-        <p class="p-t-15">
-            We are sorry that we could not complete your payment. If the amount has been detected, the same will be reconciled against your order. 
-        </p>
-        <p class="p-t-20">
-            <a href="~/user/orders/@Model" role="button" class="btn btn-light">View order details</a>
-            <a href="~/" role="button" class="btn btn-primary">Continue Shopping</a>
-        </p>
+        @if (Model > 0)
+        {
+            <p class="p-t-15">
+                We are sorry that we could not complete your payment. If the amount has been detected, the same will be reconciled against your order. You will hearback from us once the order is processed. 
+            </p>
+            <p class="p-t-20">
+                <a href="~/user/orders/@Model" role="button" class="btn btn-light">View order details</a>
+                <a href="~/" role="button" class="btn btn-primary">Continue Shopping</a>
+            </p>
+        }
+        else
+        {
+            <p class="p-t-15">
+                We are sorry that we could not complete your payment. If the amount has been detected, the same will be refunded within two working days. 
+            </p>
+            <p class="p-t-20">
+                @*<a href="~/user/orders/@Model" role="button" class="btn btn-light">View order details</a>*@
+                <a href="~/" role="button" class="btn btn-primary">Continue Shopping</a>
+            </p>
+        }
     </div>
 </div>

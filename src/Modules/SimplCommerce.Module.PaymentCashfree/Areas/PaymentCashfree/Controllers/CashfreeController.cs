@@ -69,7 +69,8 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
 
                 if (!orderCreateResult.Success)
                 {
-                    return BadRequest(orderCreateResult.Error);
+                    TempData["Error"] = orderCreateResult.Error;
+                    return Redirect("~/checkout/payment");
                 }
 
                 var order = orderCreateResult.Value;
@@ -78,8 +79,7 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                     OrderId = order.Id,
                     Amount = order.OrderTotal,
                     PaymentMethod = PaymentProviderHelper.CashfreeProviderId + " - " + cashfreeResponse.PaymentMode,
-                    //CreatedOn = DateTimeOffset.UtcNow
-                    CreatedOn = cashfreeResponse.TxTime
+                    CreatedOn = DateTimeOffset.UtcNow
                 };
 
                 if (cashfreeResponse.TxStatus == "SUCCESS")
@@ -90,7 +90,8 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                     _paymentRepository.Add(payment);
                     await _paymentRepository.SaveChangesAsync();
 
-                    return Ok(order.Id);
+                    //return Ok(order.Id);
+                    return Redirect($"~/checkout/success?orderId={order.Id}");
                 }
                 else
                 {
@@ -99,14 +100,18 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Controllers
                     payment.FailureMessage = cashfreeResponse.TxMsg;
                     order.OrderStatus = OrderStatus.PaymentFailed;
                     _paymentRepository.Add(payment);
-                    await _paymentRepository.SaveChangesAsync();                    
+                    await _paymentRepository.SaveChangesAsync();
 
-                    string errorMessages = "Error: " + cashfreeResponse.TxStatus + " - " + cashfreeResponse.TxMsg;
-                    return BadRequest("Error");
+                    TempData["Error"] = "Error: " + cashfreeResponse.TxStatus + " - " + cashfreeResponse.TxMsg;
+                    return Redirect($"~/checkout/error?orderId={order.Id}");
                 }
             }
             else
-                return BadRequest("Error. Response is Tampered.");
+            {
+                TempData["Error"] = "Error: Payment Tampered";
+                return Redirect($"~/checkout/error?orderId=-1");
+                //return BadRequest("PaymentTampered");
+            }
         }
     }
 }

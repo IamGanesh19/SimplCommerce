@@ -34,13 +34,7 @@
                         type: 'POST',
                         url: '@Url.Action("Charge", "Cashfree", new { Area = "PaymentCashfree" })',
                         data: event.response
-                    })
-                    .done(function (data) {
-                        window.location = "/checkout/success?orderId=" + data;
-                    })
-                    .fail(function (errors) {
-                        window.location = "/checkout/error";
-                    });
+                    });                    
                     break;
                 case "PAYMENT_REQUEST":
                     console.log(event);
