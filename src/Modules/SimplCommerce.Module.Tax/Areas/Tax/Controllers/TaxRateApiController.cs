@@ -38,7 +38,9 @@ namespace SimplCommerce.Module.Tax.Areas.Tax.Controllers
                     CountryName = x.Country.Name,
                     StateOrProvinceName = x.StateOrProvince.Name,
                     x.ZipCode,
-                    x.Rate
+                    x.Rate,
+                    x.MinPriceRange,
+                    x.MaxPriceRange
                 })
                 .ToListAsync();
             return Json(taxRates);
@@ -55,7 +57,9 @@ namespace SimplCommerce.Module.Tax.Areas.Tax.Controllers
                     CountryId = x.CountryId,
                     StateOrProvinceName = x.StateOrProvince.Name,
                     ZipCode = x.ZipCode,
-                    Rate = x.Rate
+                    Rate = x.Rate,
+                    MinPriceRange = x.MinPriceRange,
+                    MaxPriceRange = x.MaxPriceRange
                 })
                 .ToListAsync();
 
@@ -82,7 +86,9 @@ namespace SimplCommerce.Module.Tax.Areas.Tax.Controllers
                 CountryId = taxRate.CountryId,
                 StateOrProvinceId = taxRate.StateOrProvinceId,
                 ZipCode = taxRate.ZipCode,
-                Rate = taxRate.Rate
+                Rate = taxRate.Rate,
+                MinPriceRange = taxRate.MinPriceRange,
+                MaxPriceRange = taxRate.MaxPriceRange
             };
 
             return Json(model);
@@ -99,7 +105,9 @@ namespace SimplCommerce.Module.Tax.Areas.Tax.Controllers
                     CountryId = model.CountryId,
                     StateOrProvinceId = model.StateOrProvinceId,
                     ZipCode = model.ZipCode,
-                    Rate = model.Rate
+                    Rate = model.Rate,
+                    MinPriceRange = model.MinPriceRange,
+                    MaxPriceRange = model.MaxPriceRange
                 };
 
                 _taxRateRepository.Add(tagRate);
@@ -126,6 +134,8 @@ namespace SimplCommerce.Module.Tax.Areas.Tax.Controllers
                 taxRate.StateOrProvinceId = model.StateOrProvinceId;
                 taxRate.ZipCode = model.ZipCode;
                 taxRate.Rate = model.Rate;
+                taxRate.MinPriceRange = model.MinPriceRange;
+                taxRate.MaxPriceRange = model.MaxPriceRange;
 
                 await _taxRateRepository.SaveChangesAsync();
                 return Accepted();
@@ -176,7 +186,9 @@ namespace SimplCommerce.Module.Tax.Areas.Tax.Controllers
                     CountryId = record.CountryId,
                     StateOrProvince = stateOrProvince,
                     ZipCode = record.ZipCode,
-                    Rate = record.Rate
+                    Rate = record.Rate,
+                    MinPriceRange = record.MinPriceRange,
+                    MaxPriceRange = record.MaxPriceRange
                 };
                 _taxRateRepository.Add(taxRate);
             }

@@ -23,5 +23,9 @@ namespace SimplCommerce.Module.Tax.Models
 
         [StringLength(450)]
         public string ZipCode { get; set; }
+
+        public decimal? MinPriceRange { get; set; }
+
+        public decimal? MaxPriceRange { get; set; }
     }
 }

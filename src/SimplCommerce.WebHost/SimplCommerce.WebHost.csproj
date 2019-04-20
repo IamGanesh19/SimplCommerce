@@ -41,6 +41,7 @@
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\EmailTemplates\ShippedEmailToCustomer.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\Order\OrderDetails.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\Order\OrderHistoryList.cshtml" />
+    <None Remove="Themes\AsritaSilks\Areas\Orders\Views\Shared\Components\OrderSummary\Default.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\_ViewImports.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Orders\Views\_ViewStart.cshtml" />
     <None Remove="Themes\AsritaSilks\Areas\Payments\Views\Checkout\Payment.cshtml" />

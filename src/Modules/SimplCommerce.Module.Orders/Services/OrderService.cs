@@ -216,7 +216,7 @@ namespace SimplCommerce.Module.Orders.Services
                     return Result.Fail<Order>($"There are only {cartItem.Product.StockQuantity} items available for {cartItem.Product.Name}");
                 }
 
-                var taxPercent = await _taxService.GetTaxPercent(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, shippingAddress.ZipCode);
+                var taxPercent = await _taxService.GetTaxPercent(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, shippingAddress.ZipCode, cartItem.Product.Price);
                 var productPrice = cartItem.Product.Price;
                 if (cart.IsProductPriceIncludeTax)
                 {
@@ -284,7 +284,7 @@ namespace SimplCommerce.Module.Orders.Services
 
                 foreach (var cartItem in cart.Items.Where(x => x.Product.VendorId == vendorId))
                 {
-                    var taxPercent = await _taxService.GetTaxPercent(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, shippingAddress.ZipCode);
+                    var taxPercent = await _taxService.GetTaxPercent(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, shippingAddress.ZipCode, cartItem.Product.Price);
                     var productPrice = cartItem.Product.Price;
                     if (cart.IsProductPriceIncludeTax)
                     {
@@ -377,7 +377,7 @@ namespace SimplCommerce.Module.Orders.Services
             {
                 if (cartItem.TaxClassId.HasValue)
                 {
-                    var taxRate = await _taxService.GetTaxPercent(cartItem.TaxClassId, countryId, stateOrProvinceId, zipCode);
+                    var taxRate = await _taxService.GetTaxPercent(cartItem.TaxClassId, countryId, stateOrProvinceId, zipCode, cartItem.Price);
                     taxAmount = taxAmount + cartItem.Quantity * cartItem.Price * taxRate / 100;
                 }
             }

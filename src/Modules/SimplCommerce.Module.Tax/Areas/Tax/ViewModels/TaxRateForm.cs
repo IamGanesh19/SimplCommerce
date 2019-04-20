@@ -18,5 +18,9 @@ namespace SimplCommerce.Module.Tax.Areas.Tax.ViewModels
         public long? StateOrProvinceId { get; set; }
 
         public string ZipCode { get; set; }
+
+        public decimal? MinPriceRange { get; set; }
+
+        public decimal? MaxPriceRange { get; set; }
     }
 }

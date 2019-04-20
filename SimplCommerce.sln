@@ -141,7 +141,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplCommerce.Module.Paymen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplCommerce.Module.EmailSenderMsg91", "src\Modules\SimplCommerce.Module.EmailSenderMsg91\SimplCommerce.Module.EmailSenderMsg91.csproj", "{F6D0CAAA-1FF4-4B6F-B98E-73C1090D2803}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplCommerce.Module.ShipmentTrackingAfterShip", "src\Modules\SimplCommerce.Module.ShipmentTrackingAfterShip\SimplCommerce.Module.ShipmentTrackingAfterShip.csproj", "{D958502C-CFCF-48FA-9AC0-E69D66C6ED33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplCommerce.Module.ShipmentTrackingAfterShip", "src\Modules\SimplCommerce.Module.ShipmentTrackingAfterShip\SimplCommerce.Module.ShipmentTrackingAfterShip.csproj", "{D958502C-CFCF-48FA-9AC0-E69D66C6ED33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

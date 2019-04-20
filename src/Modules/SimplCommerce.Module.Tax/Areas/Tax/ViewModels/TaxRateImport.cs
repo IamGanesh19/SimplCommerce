@@ -16,5 +16,9 @@ namespace SimplCommerce.Module.Tax.Areas.Tax.ViewModels
 
         [Required(ErrorMessage = "The {0} field is required.")]
         public decimal Rate { get; set; }
+
+        public decimal? MinPriceRange { get; set; }
+
+        public decimal? MaxPriceRange { get; set; }
     }
 }
