@@ -19,6 +19,8 @@
             <th>{{::vm.translate.get('Country')}}</th>
             <th>{{::vm.translate.get('State or Province')}}</th>
             <th>{{::vm.translate.get('Zip Code')}}</th>
+            <th>{{::vm.translate.get('Min Price')}}</th>
+            <th>{{::vm.translate.get('Max Price')}}</th>
             <th>{{::vm.translate.get('Rate')}}</th>
             <th>{{::vm.translate.get('Actions')}}</th>
         </tr>
@@ -30,6 +32,8 @@
             <td>{{taxRate.countryName}}</td>
             <td>{{taxRate.stateOrProvinceName || "All"}}</td>
             <td>{{taxRate.zipCode}}</td>
+            <td>{{taxRate.minPriceRange}}</td>
+            <td>{{taxRate.maxPriceRange}}</td>
             <td>{{taxRate.rate}}</td>
             <td>
                 <a ui-sref="tax-rates-edit({id: taxRate.id})" title="Edit" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>

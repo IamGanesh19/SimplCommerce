@@ -37,6 +37,24 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-2 control-label">{{::vm.translate.get('Min Price')}}</label>
+                <div class="col-sm-10">
+                    <div class="input-number">
+                        <input id="minPriceRange" type="text" decimal maxlength="10" name="minPriceRange" ng-model="vm.taxRate.minPriceRange" required class="form-control" />
+                        <label for="minPriceRange" class="form-control">{{vm.taxRate.minPriceRange | number}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{::vm.translate.get('Max Price')}}</label>
+                <div class="col-sm-10">
+                    <div class="input-number">
+                        <input id="maxPriceRange" type="text" decimal maxlength="10" name="maxPriceRange" ng-model="vm.taxRate.maxPriceRange" required class="form-control" />
+                        <label for="maxPriceRange" class="form-control">{{vm.taxRate.maxPriceRange | number}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-2 control-label">{{::vm.translate.get('Rate')}}</label>
                 <div class="col-sm-10">
                     <div class="input-number">

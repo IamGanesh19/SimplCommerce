@@ -36,9 +36,6 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
             var currentUser = await _workContext.GetCurrentUser();
             var cart = await _cartService.GetActiveCartDetails(currentUser.Id);
 
-            // Converted to integer to remove the decimal value for INR
-            //int amount = 0;
-            //amount = (int)cart.OrderTotal;
             var amount = String.Format("{0:.##}", cart.OrderTotal);
 
             var orderId = DateTime.Today.ToString("ddMMyyyy") + "_" + cart.Id;
