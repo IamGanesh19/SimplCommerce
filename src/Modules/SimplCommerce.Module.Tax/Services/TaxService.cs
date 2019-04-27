@@ -24,16 +24,16 @@ namespace SimplCommerce.Module.Tax.Services
 
             var query = _taxRateRepository.Query()
                            .Where(x => x.CountryId == countryId
-                           && (x.StateOrProvinceId == stateOrProvinceId || x.StateOrProvinceId == null)
+                           && ((x.StateOrProvinceId != null && x.StateOrProvinceId == stateOrProvinceId) || x.StateOrProvinceId == null)
                            && x.TaxClassId == taxClassId.Value);
             if (!string.IsNullOrEmpty(zipCode))
             {
-                query = query.Where(x => x.ZipCode == zipCode);
+                query = query.Where(x => (x.ZipCode != null && x.ZipCode == zipCode) || x.ZipCode == null );
             }
 
             if (Price != null)
             {
-                query = query.Where(x => (!x.MinPriceRange.HasValue || x.MinPriceRange.Value >= Price.Value) && (!x.MaxPriceRange.HasValue || x.MaxPriceRange.Value <= Price.Value));
+                query = query.Where(x => (!x.MinPriceRange.HasValue || x.MinPriceRange.Value <= Price.Value) && (!x.MaxPriceRange.HasValue || x.MaxPriceRange.Value >= Price.Value));
             }
 
             var taxRate = await query.FirstOrDefaultAsync(); 
