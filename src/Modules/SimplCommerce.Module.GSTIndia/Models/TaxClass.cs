@@ -15,5 +15,11 @@ namespace SimplCommerce.Module.GSTIndia.Models
         [Required(ErrorMessage = "The {0} field is required.")]
         [StringLength(450)]
         public string Name { get; set; }
+
+        [StringLength(8)]
+        public string HSNCode { get; set; }
+
+        [StringLength(6)]
+        public string SAC { get; set; }
     }
 }

@@ -2,7 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using SimplCommerce.Infrastructure.Modules;
-using SimplCommerce.Module.GSTIndia.Services;
+using SimplCommerce.Module.Tax.Services;
+using TaxService = SimplCommerce.Module.GSTIndia.Services.TaxService;
 
 namespace SimplCommerce.Module.GSTIndia
 {

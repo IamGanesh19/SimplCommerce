@@ -10,6 +10,9 @@ namespace SimplCommerce.Module.GSTIndia.Models
 
         public TaxClass TaxClass { get; set; }
 
+        [StringLength(100)]
+        public string Name { get; set; }
+
         [StringLength(450)]
         public string CountryId { get; set; }
 
