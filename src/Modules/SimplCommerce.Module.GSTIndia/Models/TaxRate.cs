@@ -30,5 +30,7 @@ namespace SimplCommerce.Module.GSTIndia.Models
         public decimal? MinPriceRange { get; set; }
 
         public decimal? MaxPriceRange { get; set; }
+
+        public string TaxType { get; set; }
     }
 }
