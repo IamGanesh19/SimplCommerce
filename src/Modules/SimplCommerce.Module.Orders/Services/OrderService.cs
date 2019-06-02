@@ -13,7 +13,7 @@ using SimplCommerce.Module.Orders.Models;
 using SimplCommerce.Module.Pricing.Services;
 using SimplCommerce.Module.ShippingPrices.Services;
 using SimplCommerce.Module.ShoppingCart.Models;
-using SimplCommerce.Module.Tax.Services;
+using SimplCommerce.Module.GSTIndia.Services;
 using SimplCommerce.Module.Orders.Events;
 using SimplCommerce.Module.ShoppingCart.Services;
 
@@ -216,11 +216,20 @@ namespace SimplCommerce.Module.Orders.Services
                     return Result.Fail<Order>($"There are only {cartItem.Product.StockQuantity} items available for {cartItem.Product.Name}");
                 }
 
-                var taxPercent = await _taxService.GetTaxPercent(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, shippingAddress.ZipCode, cartItem.Product.Price);
+                //var taxPercent = await _taxService.GetTaxPercent(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, shippingAddress.ZipCode, cartItem.Product.Price);
+                var taxRates = await _taxService.GetTaxRates(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, cartItem.Product.Price);
+                var taxPercent = taxRates.Sum(tr => tr.Rate);
+
                 var productPrice = cartItem.Product.Price;
                 if (cart.IsProductPriceIncludeTax)
                 {
                     productPrice = productPrice / (1 + (taxPercent / 100));
+                }
+
+                var taxes = new List<OrderItemTax>(taxRates.Count);
+                foreach (var taxRate in taxRates)
+                {
+                    taxes.Add(new OrderItemTax { TaxAmount = cartItem.Quantity * (productPrice * taxPercent / 100), Rate = taxRate.Rate, TaxType = taxRate.TaxType });
                 }
 
                 var orderItem = new OrderItem
@@ -229,7 +238,8 @@ namespace SimplCommerce.Module.Orders.Services
                     ProductPrice = productPrice,
                     Quantity = cartItem.Quantity,
                     TaxPercent = taxPercent,
-                    TaxAmount = cartItem.Quantity * (productPrice * taxPercent / 100)
+                    TaxAmount = cartItem.Quantity * (productPrice * taxPercent / 100),
+                    Taxes = taxes
                 };
 
                 var discountedItem = checkingDiscountResult.DiscountedProducts.FirstOrDefault(x => x.Id == cartItem.ProductId);
@@ -284,11 +294,20 @@ namespace SimplCommerce.Module.Orders.Services
 
                 foreach (var cartItem in cart.Items.Where(x => x.Product.VendorId == vendorId))
                 {
-                    var taxPercent = await _taxService.GetTaxPercent(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, shippingAddress.ZipCode, cartItem.Product.Price);
+                    //var taxPercent = await _taxService.GetTaxPercent(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, shippingAddress.ZipCode, cartItem.Product.Price);
+                    var taxRates = await _taxService.GetTaxRates(cartItem.Product.TaxClassId, shippingAddress.CountryId, shippingAddress.StateOrProvinceId, cartItem.Product.Price);
+                    var taxPercent = taxRates.Sum(tr => tr.Rate);
+
                     var productPrice = cartItem.Product.Price;
                     if (cart.IsProductPriceIncludeTax)
                     {
                         productPrice = productPrice / (1 + (taxPercent / 100));
+                    }
+
+                    var taxes = new List<OrderItemTax>(taxRates.Count);
+                    foreach (var taxRate in taxRates)
+                    {
+                        taxes.Add(new OrderItemTax { TaxAmount = cartItem.Quantity * (productPrice * taxPercent / 100), Rate = taxRate.Rate, TaxType = taxRate.TaxType });
                     }
 
                     var orderItem = new OrderItem
@@ -297,7 +316,8 @@ namespace SimplCommerce.Module.Orders.Services
                         ProductPrice = productPrice,
                         Quantity = cartItem.Quantity,
                         TaxPercent = taxPercent,
-                        TaxAmount = cartItem.Quantity * (productPrice * taxPercent / 100)
+                        TaxAmount = cartItem.Quantity * (productPrice * taxPercent / 100),
+                        Taxes = taxes
                     };
 
                     if (cart.IsProductPriceIncludeTax)
@@ -377,8 +397,14 @@ namespace SimplCommerce.Module.Orders.Services
             {
                 if (cartItem.TaxClassId.HasValue)
                 {
-                    var taxRate = await _taxService.GetTaxPercent(cartItem.TaxClassId, countryId, stateOrProvinceId, zipCode, cartItem.Price);
-                    taxAmount = taxAmount + cartItem.Quantity * cartItem.Price * taxRate / 100;
+                    //var taxRate = await _taxService.GetTaxPercent(cartItem.TaxClassId, countryId, stateOrProvinceId, zipCode, cartItem.Price);
+                    var taxRates = await _taxService.GetTaxRates(cartItem.TaxClassId, countryId, stateOrProvinceId, cartItem.Price);
+                    decimal taxPercent = 0;
+                    foreach (var taxRate in taxRates)
+                    {
+                        taxPercent += taxRate.Rate;
+                    }
+                    taxAmount = taxAmount + cartItem.Quantity * cartItem.Price * taxPercent / 100;
                 }
             }
 

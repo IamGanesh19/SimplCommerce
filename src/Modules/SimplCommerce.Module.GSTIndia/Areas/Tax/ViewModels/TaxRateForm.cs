@@ -24,6 +24,6 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.ViewModels
 
         public decimal? MaxPriceRange { get; set; }
 
-        public GSTType TaxType { get; set; }
+        public string TaxType { get; set; }
     }
 }

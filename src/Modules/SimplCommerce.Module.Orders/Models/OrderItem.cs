@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SimplCommerce.Infrastructure.Models;
 using SimplCommerce.Module.Catalog.Models;
+using System.Collections.Generic;
 
 namespace SimplCommerce.Module.Orders.Models
 {
@@ -23,5 +24,7 @@ namespace SimplCommerce.Module.Orders.Models
         public decimal TaxAmount { get; set; }
 
         public decimal TaxPercent { get; set; }
+
+        public IList<OrderItemTax> Taxes { get; set; } = new List<OrderItemTax>();
     }
 }
