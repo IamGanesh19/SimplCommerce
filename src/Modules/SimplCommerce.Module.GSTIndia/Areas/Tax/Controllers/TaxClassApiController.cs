@@ -29,7 +29,7 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
         {
             var taxClasses = await _taxClassRepository
                 .Query()
-                .Select(x => new { Id = x.Id, Name = x.Name })
+                .Select(x => new { Id = x.Id, Name = x.Name, HSNCode = x.HSNCode, SAC = x.SAC })
                 .ToListAsync();
             return Json(taxClasses);
         }
@@ -47,6 +47,8 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
             {
                 Id = taxClass.Id,
                 Name = taxClass.Name,
+                HSNCode = taxClass.HSNCode,
+                SAC = taxClass.SAC
             };
 
             return Json(model);
@@ -59,7 +61,9 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
                 .Select(x => new
                 {
                     x.Id,
-                    x.Name
+                    x.Name,
+                    x.HSNCode,
+                    x.SAC
                 })
                 .FirstOrDefaultAsync(x => x.Id == _defaultTaxClassId);
 
@@ -73,7 +77,9 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
             {
                 var tagClass = new TaxClass
                 {
-                    Name = model.Name
+                    Name = model.Name,
+                    HSNCode = model.HSNCode,
+                    SAC = model.SAC
                 };
 
                 _taxClassRepository.Add(tagClass);
@@ -96,6 +102,8 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
                 }
 
                 taxClass.Name = model.Name;
+                taxClass.HSNCode = model.HSNCode;
+                taxClass.SAC = model.SAC;
                 await _taxClassRepository.SaveChangesAsync();
                 return Accepted();
             }

@@ -8,5 +8,11 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.ViewModels
 
         [Required(ErrorMessage = "The {0} field is required.")]
         public string Name { get; set; }
+
+        [StringLength(8)]
+        public string HSNCode { get; set; }
+
+        [StringLength(6)]
+        public string SAC { get; set; }
     }
 }

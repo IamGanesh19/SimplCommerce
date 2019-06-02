@@ -9,7 +9,7 @@ namespace SimplCommerce.Module.GSTIndia.Data
     {
         public void Build(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TaxClass>().HasData(new TaxClass(1) { Name = "Standard VAT" });
+            modelBuilder.Entity<TaxClass>().HasData(new TaxClass(1) { Name = "Standard GST" });
 
             modelBuilder.Entity<AppSetting>().HasData(
                 new AppSetting("Tax.DefaultTaxClassId") { Module = "Tax", IsVisibleInCommonSettingPage = true, Value = "1" }

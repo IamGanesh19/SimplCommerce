@@ -40,7 +40,8 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
                     x.ZipCode,
                     x.Rate,
                     x.MinPriceRange,
-                    x.MaxPriceRange
+                    x.MaxPriceRange,
+                    x.TaxType
                 })
                 .ToListAsync();
             return Json(taxRates);
@@ -59,7 +60,8 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
                     ZipCode = x.ZipCode,
                     Rate = x.Rate,
                     MinPriceRange = x.MinPriceRange,
-                    MaxPriceRange = x.MaxPriceRange
+                    MaxPriceRange = x.MaxPriceRange,
+                    TaxType = x.TaxType
                 })
                 .ToListAsync();
 
@@ -88,7 +90,8 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
                 ZipCode = taxRate.ZipCode,
                 Rate = taxRate.Rate,
                 MinPriceRange = taxRate.MinPriceRange,
-                MaxPriceRange = taxRate.MaxPriceRange
+                MaxPriceRange = taxRate.MaxPriceRange,
+                TaxType = taxRate.TaxType
             };
 
             return Json(model);
@@ -107,7 +110,8 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
                     ZipCode = model.ZipCode,
                     Rate = model.Rate,
                     MinPriceRange = model.MinPriceRange,
-                    MaxPriceRange = model.MaxPriceRange
+                    MaxPriceRange = model.MaxPriceRange,
+                    TaxType = model.TaxType
                 };
 
                 _taxRateRepository.Add(tagRate);
@@ -136,6 +140,7 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
                 taxRate.Rate = model.Rate;
                 taxRate.MinPriceRange = model.MinPriceRange;
                 taxRate.MaxPriceRange = model.MaxPriceRange;
+                taxRate.TaxType = model.TaxType;
 
                 await _taxRateRepository.SaveChangesAsync();
                 return Accepted();
@@ -188,7 +193,8 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
                     ZipCode = record.ZipCode,
                     Rate = record.Rate,
                     MinPriceRange = record.MinPriceRange,
-                    MaxPriceRange = record.MaxPriceRange
+                    MaxPriceRange = record.MaxPriceRange,
+                    TaxType = record.TaxType
                 };
                 _taxRateRepository.Add(taxRate);
             }

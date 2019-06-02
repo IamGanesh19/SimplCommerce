@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SimplCommerce.Module.GSTIndia.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace SimplCommerce.Module.GSTIndia.Areas.Tax.ViewModels
 {
@@ -22,5 +23,7 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.ViewModels
         public decimal? MinPriceRange { get; set; }
 
         public decimal? MaxPriceRange { get; set; }
+
+        public GSTType TaxType { get; set; }
     }
 }

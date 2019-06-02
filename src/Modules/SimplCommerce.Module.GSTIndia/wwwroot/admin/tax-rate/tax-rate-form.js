@@ -10,6 +10,7 @@
         vm.translate = translateService;
         vm.taxRate = { rate : 0 };
         vm.taxClasses = [];
+        vm.taxTypes = [];
         vm.countries = [];
         vm.statesOrProvinces = [];
         vm.taxRateId = $stateParams.id;
@@ -52,6 +53,10 @@
             });
         }
 
+        function getTaxTypes() {
+            vm.taxTypes = ["IGST","CGST", "SGST"];
+        }
+
         function getTaxClasses() {
             taxClassService.getTaxClasses().then(function (result) {
                 vm.taxClasses = result.data;
@@ -61,6 +66,7 @@
         function init() {
             getCountries();
             getTaxClasses();
+            getTaxTypes();
             if (vm.isEditMode) {
                 taxRateService.getTaxRate(vm.taxRateId).then(function (result) {
                     vm.taxRate = result.data;
