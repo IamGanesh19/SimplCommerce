@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C9BFDDC4-5671-47A3-B57D-197C2A51FA8A}"
 EndProject
@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{0A
 		src\Database\StaticData-BR.sql = src\Database\StaticData-BR.sql
 		src\Database\StaticData-CN.sql = src\Database\StaticData-CN.sql
 		src\Database\StaticData-DE.sql = src\Database\StaticData-DE.sql
+		src\Database\StaticData-DefaultLocalization.sql = src\Database\StaticData-DefaultLocalization.sql
 		src\Database\StaticData-ES.sql = src\Database\StaticData-ES.sql
 		src\Database\StaticData-FR.sql = src\Database\StaticData-FR.sql
 		src\Database\StaticData-GB.sql = src\Database\StaticData-GB.sql

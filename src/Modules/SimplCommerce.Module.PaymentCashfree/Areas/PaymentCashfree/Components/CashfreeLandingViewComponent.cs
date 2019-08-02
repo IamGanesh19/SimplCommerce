@@ -49,7 +49,7 @@ namespace SimplCommerce.Module.PaymentCashfree.Areas.PaymentCashfree.Components
                 OrderAmount = amount,
                 CustomerName = currentUser.FullName,
                 CustomerEmail = currentUser.Email,
-                CustomerPhone = currentUser.PhoneNumber,
+                CustomerPhone = string.IsNullOrWhiteSpace(currentUser.PhoneNumber) ? "1234567890" : currentUser.PhoneNumber, // Phone number is mandatory for Cashfree payment
                 Mode = cashfreeSetting.IsSandbox ? "TEST" : "PROD",
                 ReturnURL = cashfreeSetting.ReturnURL,
                 NotifyURL = cashfreeSetting.NotifyURL

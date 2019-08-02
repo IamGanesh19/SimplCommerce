@@ -25,15 +25,15 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
         private readonly IRazorViewEngine _viewEngine;
         private readonly IPdfConverter _pdfConverter;
         private string theme;
+        private readonly ICurrencyService _currencyService;
 
-        public InvoiceApiController(IRepository<Order> orderRepository, IWorkContext workContext, IRazorViewRenderer viewRender, IPdfConverter pdfConverter, IConfiguration config, IRazorViewEngine viewEngine)
+        public InvoiceApiController(IRepository<Order> orderRepository, IWorkContext workContext, IRazorViewRenderer viewRender, IPdfConverter pdfConverter, IConfiguration config, IRazorViewEngine viewEngine, ICurrencyService currencyService)
         {
             _orderRepository = orderRepository;
             _workContext = workContext;
             _viewRender = viewRender;
             _pdfConverter = pdfConverter;
-            _viewEngine = viewEngine;
-            theme = config["Theme"];
+            _currencyService = currencyService;
         }
 
         [HttpGet("print/{id}")]
@@ -60,7 +60,7 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
                 return BadRequest(new { error = "You don't have permission to manage this order" });
             }
 
-            var model = new OrderDetailVm
+            var model = new OrderDetailVm(_currencyService)
             {
                 Id = order.Id,
                 CreatedOn = order.CreatedOn,
@@ -88,7 +88,7 @@ namespace SimplCommerce.Module.Orders.Areas.Orders.Controllers
                     StateOrProvinceName = order.ShippingAddress.StateOrProvince.Name,
                     Phone = order.ShippingAddress.Phone
                 },
-                OrderItems = order.OrderItems.Select(x => new OrderItemVm
+                OrderItems = order.OrderItems.Select(x => new OrderItemVm(_currencyService)
                 {
                     Id = x.Id,
                     ProductId = x.Product.Id,

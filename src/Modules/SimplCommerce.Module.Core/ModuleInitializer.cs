@@ -24,6 +24,7 @@ namespace SimplCommerce.Module.Core
             serviceCollection.AddSingleton<SettingDefinitionProvider>();
             serviceCollection.AddScoped<ISettingService, SettingService>();
             serviceCollection.AddTransient<IAccountEmailService, AccountEmailService>();
+            serviceCollection.AddScoped<ICurrencyService, CurrencyService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
