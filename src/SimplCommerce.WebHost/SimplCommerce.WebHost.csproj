@@ -23,6 +23,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190407073658_CashfreePayment.cs" />
     <Compile Remove="Migrations\20190407073658_CashfreePayment.Designer.cs" />
+    <Compile Remove="Migrations\20190813101738_test.cs" />
+    <Compile Remove="Migrations\20190813101738_test.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

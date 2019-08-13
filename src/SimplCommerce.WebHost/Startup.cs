@@ -19,7 +19,6 @@ using SimplCommerce.Module.Core.Data;
 using SimplCommerce.Module.Localization.Extensions;
 using SimplCommerce.Module.Localization.TagHelpers;
 using SimplCommerce.WebHost.Extensions;
-using System.Globalization;
 
 namespace SimplCommerce.WebHost
 {
@@ -86,13 +85,6 @@ namespace SimplCommerce.WebHost
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var cultureInfo = new CultureInfo("en-IN");
-            cultureInfo.NumberFormat.CurrencySymbol = "₹";
-            CultureInfo.CurrentCulture = cultureInfo;
-            CultureInfo.CurrentUICulture = cultureInfo;
-            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
-            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
