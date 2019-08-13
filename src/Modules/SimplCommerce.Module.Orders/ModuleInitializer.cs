@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplCommerce.Module.Orders.Events;
 using SimplCommerce.Infrastructure.Modules;
 using SimplCommerce.Module.Orders.Services;
+using SimplCommerce.Infrastructure;
 
 namespace SimplCommerce.Module.Orders
 {
@@ -18,6 +19,8 @@ namespace SimplCommerce.Module.Orders
             services.AddTransient<INotificationHandler<OrderCreated>, OrderCreatedCreateOrderHistoryHandler>();
             services.AddTransient<INotificationHandler<OrderChanged>, OrderChangedSendEmailHandler>();
             services.AddTransient<INotificationHandler<OrderCreated>, OrderCreatedSendEmailHandler>();
+
+            GlobalConfiguration.RegisterAngularModule("simplAdmin.orders");
         }
 
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
