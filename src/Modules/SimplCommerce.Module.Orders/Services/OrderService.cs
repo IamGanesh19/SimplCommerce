@@ -399,11 +399,7 @@ namespace SimplCommerce.Module.Orders.Services
                 {
                     //var taxRate = await _taxService.GetTaxPercent(cartItem.TaxClassId, countryId, stateOrProvinceId, zipCode, cartItem.Price);
                     var taxRates = await _taxService.GetTaxRates(cartItem.TaxClassId, countryId, stateOrProvinceId, cartItem.Price);
-                    decimal taxPercent = 0;
-                    foreach (var taxRate in taxRates)
-                    {
-                        taxPercent += taxRate.Rate;
-                    }
+                    var taxPercent = taxRates.Sum(tr => tr.Rate);
                     taxAmount = taxAmount + cartItem.Quantity * cartItem.Price * taxPercent / 100;
                 }
             }

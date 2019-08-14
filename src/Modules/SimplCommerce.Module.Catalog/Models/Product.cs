@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SimplCommerce.Module.Core.Models;
-using SimplCommerce.Module.Tax.Models;
+using SimplCommerce.Module.GSTIndia.Models;
 
 namespace SimplCommerce.Module.Catalog.Models
 {

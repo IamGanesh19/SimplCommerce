@@ -19,30 +19,30 @@
         return service;
 
         function getTaxRate(id) {
-            return $http.get('api/tax-rates/' + id);
+            return $http.get('api/gst/tax-rates/' + id);
         }
 
         function getTaxRates() {
-            return $http.get('api/tax-rates');
+            return $http.get('api/gst/tax-rates');
         }
 
         function createTaxRate(taxRate) {
-            return $http.post('api/tax-rates', taxRate);
+            return $http.post('api/gst/tax-rates', taxRate);
         }
 
         function importTaxRates(taxRateImport) {
             return Upload.upload({
-                url: 'api/tax-rates/import',
+                url: 'api/gst/tax-rates/import',
                 data: taxRateImport
             });
         }
 
         function editTaxRate(taxRate) {
-            return $http.put('api/tax-rates/' + taxRate.id, taxRate);
+            return $http.put('api/gst/tax-rates/' + taxRate.id, taxRate);
         }
 
         function deleteTaxRate(taxRate) {
-            return $http.delete('api/tax-rates/' + taxRate.id, null);
+            return $http.delete('api/gst/tax-rates/' + taxRate.id, null);
         }
 
         function getCountries() {

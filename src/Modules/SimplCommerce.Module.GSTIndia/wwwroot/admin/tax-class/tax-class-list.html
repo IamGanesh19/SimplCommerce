@@ -21,8 +21,8 @@
     <tbody>
         <tr ng-repeat="taxClass in vm.taxClasses">
             <td>{{taxClass.name}}</td>
-            <td>{{taxClass.hSNCode}}</td>
-            <td>{{taxClass.sAC}}</td>
+            <td>{{taxClass.hsnCode}}</td>
+            <td>{{taxClass.sac}}</td>
             <td>
                 <a ui-sref="tax-classes-edit({id: taxClass.id})" title="Edit" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
                 <button ng-click="vm.deleteTaxClass(taxClass)" class="btn btn-danger btn-xs delete"> <span class="glyphicon glyphicon-remove"></span></button>

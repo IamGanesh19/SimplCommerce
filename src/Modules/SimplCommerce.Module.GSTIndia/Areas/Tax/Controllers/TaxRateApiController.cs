@@ -14,7 +14,7 @@ namespace SimplCommerce.Module.GSTIndia.Areas.Tax.Controllers
 {
     [Area("Tax")]
     [Authorize(Roles = "admin")]
-    [Route("api/tax-rates")]
+    [Route("api/gst/tax-rates")]
     public class TaxRateApiController : Controller
     {
         private readonly IRepository<TaxRate> _taxRateRepository;

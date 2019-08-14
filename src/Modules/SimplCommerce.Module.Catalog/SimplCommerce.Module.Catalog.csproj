@@ -3,7 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\SimplCommerce.Infrastructure\SimplCommerce.Infrastructure.csproj" />
     <ProjectReference Include="..\SimplCommerce.Module.Core\SimplCommerce.Module.Core.csproj" />
-    <ProjectReference Include="..\SimplCommerce.Module.Tax\SimplCommerce.Module.Tax.csproj" />
+    <ProjectReference Include="..\SimplCommerce.Module.GSTIndia\SimplCommerce.Module.GSTIndia.csproj" />
   </ItemGroup>
 
 </Project>
