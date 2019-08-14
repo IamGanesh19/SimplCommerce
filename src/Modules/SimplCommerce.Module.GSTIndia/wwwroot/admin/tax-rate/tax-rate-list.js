@@ -1,7 +1,7 @@
 ﻿/*global angular, confirm*/
 (function () {
     angular
-        .module('simplAdmin.tax')
+        .module('simplAdmin.gstindia')
         .controller('TaxRateListCtrl', TaxRateListCtrl);
 
     /* @ngInject */

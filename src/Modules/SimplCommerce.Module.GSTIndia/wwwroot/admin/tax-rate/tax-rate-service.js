@@ -1,7 +1,7 @@
 ﻿/*global angular*/
 (function () {
     angular
-        .module('simplAdmin.tax')
+        .module('simplAdmin.gstindia')
         .factory('taxRateService', taxRateService);
 
     /* @ngInject */

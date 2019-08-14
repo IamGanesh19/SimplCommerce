@@ -1,6 +1,6 @@
 ﻿{
-  "id": "SimplCommerce.Module.Tax",
+  "id": "SimplCommerce.Module.GSTIndia",
   "name": "Taxes",
-  "isBundledWithHost": true,
+  "isBundledWithHost": false,
   "version": "1.0.0"
 }

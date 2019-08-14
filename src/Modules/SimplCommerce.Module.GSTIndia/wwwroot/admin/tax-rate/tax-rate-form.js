@@ -1,7 +1,7 @@
 ﻿/*global angular, jQuery*/
 (function ($) {
     angular
-        .module('simplAdmin.tax')
+        .module('simplAdmin.gstindia')
         .controller('TaxRateFormCtrl', TaxRateFormCtrl);
 
     /* @ngInject */
